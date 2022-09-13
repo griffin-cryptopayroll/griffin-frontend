@@ -9,7 +9,7 @@ import {
 } from "../api/employee.js";
 import styles from "../styles/employee.module.css";
 
-const Employee = () => {
+const EmployeeDashboard = () => {
   const router = useRouter();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -378,4 +378,4 @@ const Employee = () => {
   );
 };
 
-export default Employee;
+export default EmployeeDashboard;

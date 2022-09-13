@@ -1,7 +1,5 @@
-import MoneyDashboard from "../components/moneyDashboard";
-import Profile from "../components/profile";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "antd/dist/antd.css";
 
 import {
@@ -11,35 +9,28 @@ import {
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
 import Navbar from "../components/navbar";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { employerIdState, loginState } from "../lib/states";
+import { useRecoilState } from "recoil";
+import { employerIdState } from "../lib/states";
+import EmployeeDashboard from "../components/employeeDashboard";
 
 const { Header, Content, Sider } = Layout;
 
-const App = () => {
+const Employee = () => {
   const router = useRouter();
   const [employerId, setEmployerId] = useRecoilState(employerIdState);
-  const loginStateNow = useRecoilValue(loginState);
   const items2 = [
     {
       key: `sub1`,
       icon: React.createElement(LaptopOutlined),
       label: `Dashboard`,
+      onClick: () => router.push("/"),
     },
     {
       key: `sub2`,
       icon: React.createElement(UserOutlined),
       label: `Employee`,
-      onClick: () => router.push("/employee"),
     },
   ];
-  useEffect(() => {
-    if (!loginStateNow) {
-      window.alert("You need to login before enter the Dashboard");
-      router.push("/login");
-    }
-  }, [loginStateNow]);
-
   return (
     <>
       <Navbar />
@@ -70,10 +61,7 @@ const App = () => {
                 minHeight: 280,
               }}
             >
-              <>
-                <Profile employerId={employerId} />
-                <MoneyDashboard employerId={employerId} />
-              </>
+              <EmployeeDashboard employerId={employerId} />
             </Content>
           </Layout>
         </Layout>
@@ -82,4 +70,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Employee;

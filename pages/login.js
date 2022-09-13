@@ -4,9 +4,13 @@ import "antd/dist/antd.css";
 import { Button, Checkbox, Form, Input } from "antd";
 import styles from "../styles/signup.module.css";
 import { loginApi } from "../api/employee";
+import { useRecoilState } from "recoil";
+import { employerIdState, loginState } from "../lib/states";
 
 const Login = () => {
   const router = useRouter();
+  const [, setEmployerId] = useRecoilState(employerIdState);
+  const [, setLoginNow] = useRecoilState(loginState);
   const [inputData, setInputData] = useState({
     employerId: "",
     employerPw: "",
@@ -15,16 +19,20 @@ const Login = () => {
     console.log("Success:", values);
   };
 
+  const sendForm = () => {
+    router.push("https://forms.gle/bjGqL9x3FL1PcMap8");
+  };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
   const loginFunc = async (inputData) => {
+    console.log(inputData);
     const res = await loginApi(inputData.employerId, inputData.employerPw);
     console.log(res.username, res);
-    router.push({
-      pathname: "/",
-      query: { employerId: res.data.employerId, tab: "Dashboard" },
-    });
+    setEmployerId(res.data.employerId);
+    setLoginNow(true);
+    router.push("/");
   };
 
   const onChange = (e) => {
@@ -112,6 +120,7 @@ const Login = () => {
           </Button>
         </Form.Item>
       </Form>
+      <a onClick={sendForm}>If you don't fill out the form, click here</a>
     </div>
   );
 };

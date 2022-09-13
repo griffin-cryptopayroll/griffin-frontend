@@ -22,7 +22,7 @@ export const EmployeeDataProvider = ({ children }) => {
   const getEmployee = async (employerId) => {
     console.log(employerId);
     const res = await getEmployeeApi(employerId);
-    setEmployeeNReList(res.data.repeat_false.map(mapEmployeeData));
+    setEmployeeNReList(res.data.repeat_false?.map(mapEmployeeData));
     setEmployeeReList((res.data.repeat_true || []).map(mapEmployeeData));
     setTotalEmployee(res.data.total_length);
     setTotalEmployeeList(
