@@ -1,20 +1,34 @@
 {
-  "name": "my-app",
+  "name": "griffin_front",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "env-cmd jest"
   },
   "dependencies": {
-    "next": "12.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "@ant-design/charts": "^1.4.2",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "antd": "^4.22.3",
+    "axios": "^0.27.2",
+    "ethers": "^5.6.9",
+    "lodash": "^4.17.21",
+    "next": "^12.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.5",
+    "walletlink": "^2.5.0",
+    "web3": "^1.7.4",
+    "web3modal": "^1.9.8"
   },
   "devDependencies": {
-    "eslint": "8.23.0",
-    "eslint-config-next": "12.2.5"
+    "env-cmd": "^10.1.0",
+    "eslint": "8.20.0",
+    "eslint-config-next": "12.2.3",
+    "jest": "^28.1.3",
+    "react-test-renderer": "^18.2.0"
   }
 }

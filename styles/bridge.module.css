@@ -1,0 +1,105 @@
+.bridgeWrapper {
+  left: 408px;
+  top: 100px;
+  background: rgba(255, 255, 255, 0.24);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.bridgeTab {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px;
+  width: 100%;
+  height: 44px;
+  background: #f7f7f8;
+  border-radius: 12px;
+}
+
+.bridgeTab > p {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 31px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 1;
+  margin: 0px 0px;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px -2px rgb(0 0 0 / 8%),
+    inset 0px 1px 0.5px rgb(255 255 255 / 16%);
+  border-radius: 8px;
+}
+
+.isActive {
+  background: #fff;
+}
+
+.bridgeWrapper > button {
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  padding: 4px;
+  width: 100%;
+  height: 44px;
+  background: #f7f7f8;
+  border-radius: 12px;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 31px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 1;
+  margin: 0px 0px;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px -2px rgb(0 0 0 / 8%),
+    inset 0px 1px 0.5px rgb(255 255 255 / 16%);
+  border-radius: 8px;
+}
+
+.from {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 31px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 1;
+  margin: 0px 0px;
+  /* cursor: pointer; */
+  box-shadow: 0px 2px 2px -2px rgb(0 0 0 / 8%),
+    inset 0px 1px 0.5px rgb(255 255 255 / 16%);
+  border-radius: 8px;
+}
+
+.to {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 31px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 1;
+  margin: 0px 0px;
+  /* cursor: pointer; */
+  box-shadow: 0px 2px 2px -2px rgb(0 0 0 / 8%),
+    inset 0px 1px 0.5px rgb(255 255 255 / 16%);
+  border-radius: 8px;
+}
+
+.wrapperContent {
+  display: flex;
+}

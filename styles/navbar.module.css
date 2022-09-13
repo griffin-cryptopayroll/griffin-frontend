@@ -1,0 +1,81 @@
+.nav {
+  display: flex;
+  width: -webkit-fill-available;
+  height: 6vh;
+  /* background: #111827; */
+  padding: 10px 42px;
+  align-items: center;
+  justify-content: space-between;
+}
+.logobox > span {
+  width: 171px !important;
+  height: auto !important;
+}
+@media (max-width: 475px) {
+  .logobox > span {
+    width: 100px !important;
+    height: auto !important;
+  }
+}
+
+.nav > ul {
+  display: flex;
+}
+
+.nav > ul > li > p {
+  background: #6d5bd6;
+  color: white;
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.nav > ul > li {
+  display: flex;
+  align-items: center;
+  margin: 0 13px;
+}
+
+.L1InfoBox {
+  -webkit-box-align: center;
+  background-color: #f7f7f7;
+  border: 2px solid #f7f7f7;
+  border-radius: 16px;
+  color: rgb(0, 0, 0);
+
+  font-weight: 500;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 6px 8px;
+}
+
+.L1InfoBox > p:first-child {
+  color: dimgray;
+  font-size: 14px;
+}
+.L1Container > button {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 16px;
+  white-space: nowrap;
+  width: 100%;
+  height: 40px;
+}
+
+.L1Container {
+  display: flex;
+}
+
+.L2Container {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-radius: 16px;
+  white-space: nowrap;
+  width: 100%;
+  height: 40px;
+}

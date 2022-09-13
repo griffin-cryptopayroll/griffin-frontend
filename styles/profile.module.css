@@ -1,0 +1,8 @@
+.profileBox {
+  background: white;
+  padding: 2rem;
+  border-radius: 30px;
+  box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px,
+    rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+  margin: 18px;
+}
