@@ -6,17 +6,17 @@ const iconStyle = "h-6 w-auto mr-2"
 const menuItems = [
     {
         href: "/dashboard",
-        title: "dashboard",
+        title: "Dashboard",
         icon: <HomeIcon className={iconStyle} />,
     },
     {
         href: "/employees",
-        title: "employees",
+        title: "Employees",
         icon: <UserIcon className={iconStyle} />,
     },
     {
         href: "/payroll",
-        title: "payroll",
+        title: "Payroll",
         icon: <CircleStackIcon className={iconStyle} />,
     },
     // {
@@ -29,10 +29,10 @@ const menuItems = [
 export default function SidePanel() {
     const [activeItem, setActiveItem] = useState()
 
-    return <div className="bg-violet-50 w-60 h-full">
+    return <div className="h-full">
         {menuItems.map(({ href, title, icon }) => {
             return <Link key={title} href={href}>
-                <div className="flex items-center px-10 py-5 text-lg hover:bg-violet-300 transition-all">
+                <div className="flex items-center pl-6 pr-10 py-5 text-lg font-light tracking-wider cursor-pointer hover:bg-violet-100 transition-all">
                     {icon}
                     <div>
                         {title}

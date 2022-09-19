@@ -12,10 +12,10 @@ const navItems = [
 
 export default function Navbar(props) {
 
-    return <nav className="bg-violet-300 w-full h-16 px-10 flex items-center justify-between">
-        <div className="text-2xl font-semibold">GRIFFIN</div>
+    return <nav className=" h-20 px-6 flex items-center justify-between">
+        <div className="text-3xl font-semibold">G R I F F I N</div>
         <Button
-            label="Deposit"
+            label="Connect Wallet"
         />
 
     </nav>

@@ -1,5 +1,5 @@
-import Navbar from "../../components/Nav";
-import SidePanel from "../../components/SidePanel";
+import Navbar from "../components/Nav";
+import SidePanel from "../components/SidePanel";
 
 export default function Dashboard() {
 
