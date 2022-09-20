@@ -1,6 +1,7 @@
 import Button from "../../components/Button"
 import Navbar from "../../components/Nav"
 import SidePanel from "../../components/SidePanel"
+import { useState } from "react"
 
 const data = [
     {
@@ -14,6 +15,17 @@ const data = [
         date: 23,
         secLeft: 1088987
     },
+    {
+        key: 4444444,
+        name: "Vitalik B",
+        email: "vitalik.eth",
+        position: "grandmaster",
+        account: "0x0100000000000",
+        payroll: 0,
+        curr: "eth",
+        date: 23,
+        secLeft: 1088987
+    },
 ]
 
 export default function Emplopyees() {
@@ -22,20 +34,24 @@ export default function Emplopyees() {
             <Navbar></Navbar>
             <div className="flex grow h-full">
                 <SidePanel />
-                <EmployeeList />
+                <EmployeeList data={data} />
             </div>
         </div>
     )
 }
 
 function EmployeeList(props) {
+    const [searchToken, setSearchToken] = useState("")
+
     return (
-        <div className="px-8 py-5 bg-stone-100 h-full">
+        <div className="px-8 py-5 bg-stone-100 h-full w-full">
             <div className="mb-3 text-3xl font-semibold">Employees</div>
             <div className="mb-3 flex justify-between space-x-2 items-center">
                 <input className="flex-1 mr-5 px-4 py-2 bg-white text-slate-500 rounded-lg outline-white focus:outline-stone-300 transition-all"
                     type="text"
                     placeholder="search employee by name"
+                    value={searchToken}
+                    onChange={(e) => setSearchToken(e.target.value)}
                 />
                 <Button
                     size="sm"
@@ -47,26 +63,23 @@ function EmployeeList(props) {
                 />
             </div>
 
-            <table className="table-fixed w-full">
-                <thead >
-                    <tr >
-                        <th>name</th>
-                        <th>role</th>
-                        <th>email</th>
-                        {/* <th>account</th> */}
-                        <th>payment amount</th>
-                        <th>currency</th>
-                        <th>pay day</th>
-                        {/* <th>time left</th> */}
-                        {/* <th></th> */}
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((employee) => (
-                        <EmployeeListItem data={employee} />
-                    ))}
-                </tbody>
-            </table>
+            <div className="w-full">
+                <div className="w-full grid grid-cols-6 gap-6 font-bold p-4">
+                    <div>name</div>
+                    <div>role</div>
+                    <div>email</div>
+                    <div>payment amount</div>
+                    <div>currency</div>
+                    <div>pay day</div>
+                </div>
+                <div>
+                    {props.data
+                        .filter(({ name }) => name.toLowerCase().includes(searchToken.toLowerCase()))
+                        .map((employee) => (
+                            <EmployeeListItem key={employee.key} data={employee} />
+                        ))}
+                </div>
+            </div>
         </div>
     )
 }
@@ -80,22 +93,20 @@ function EmployeeListItem({ data }) {
     const { key, name, email, position, account, payroll, curr, date, secLeft } = data
 
     return (
-        <tr key={key}>
-            <td>{name ?? "--"}</td>
-            <td>{position ?? "--"}</td>
-            <td>{email ?? "--"}</td>
-            {/* <td>{account}</td> */}
-            <td>{payroll ?? "--"}</td>
-            <td>{curr ?? "--"}</td>
-            <td>{date ?? "--"}</td>
-            {/* <td>{secLeft}</td> */}
-            {/* <td>
-            <Button
-                label="Pay"
-                size="sm"
-                onClickHander={handlePayment}
-            />
-        </td> */}
-        </tr>
+        <div className="w-full grid grid-cols-6 gap-6 rounded-lg items-center bg-white p-4 m-2">
+            <div>{name ?? "--"}</div>
+            <div>{position ?? "--"}</div>
+            <div>{email ?? "--"}</div>
+            <div>{payroll ?? "--"}</div>
+            <div>{curr ?? "--"}</div>
+            <div>{date ?? "--"}</div>
+            {/* <div>
+                <Button
+                    label="Pay"
+                    size="sm"
+                    onClickHander={handlePayment}
+                />
+            </div> */}
+        </div>
     )
 }
