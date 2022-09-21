@@ -29,16 +29,17 @@ const menuItems = [
 export default function SidePanel() {
     const [activeItem, setActiveItem] = useState()
 
-    return <div className="h-full">
-        {menuItems.map(({ href, title, icon }) => {
-            return <Link key={title} href={href}>
-                <div className="flex items-center pl-6 pr-10 py-5 text-lg font-light tracking-wider cursor-pointer hover:bg-violet-100 transition-all">
-                    {icon}
-                    <div>
-                        {title}
+    return (
+        <div className="h-full bg-white">
+            {menuItems.map(({ href, title, icon }) => {
+                return <Link key={title} href={href}>
+                    <div className="flex items-center pl-6 pr-10 py-5 text-lg font-light tracking-wider cursor-pointer hover:bg-violet-100 transition-all">
+                        {icon}
+                        <div>
+                            {title}
+                        </div>
                     </div>
-                </div>
-            </Link>
-        })}
-    </div>
+                </Link>
+            })}
+        </div>)
 }

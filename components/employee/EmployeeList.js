@@ -33,7 +33,7 @@ export default function EmployeeList(props) {
     }
 
     return (
-        <div className="px-8 py-5 bg-stone-100 rounded-tl-lg w-full h-full">
+        <div className="px-8 py-5 bg-stone-100 rounded-tl-lg grow ">
             <div className="mb-3 text-3xl font-semibold">Employees</div>
             {newEmployeeForm &&
                 <Modal>
@@ -70,7 +70,7 @@ export default function EmployeeList(props) {
                     <div>currency</div>
                     <div>scheduled</div>
                 </div>
-                <div className="">
+                <div className=" max-h-full overflow-auto">
                     {empData?.length ?
                         empData
                             .filter(({ name }) => name.toLowerCase().includes(searchToken.toLowerCase()))
