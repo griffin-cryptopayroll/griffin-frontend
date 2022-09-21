@@ -1,0 +1,1 @@
+export const iconStyle = "h-6 w-auto mr-2"
