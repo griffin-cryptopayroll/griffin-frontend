@@ -16,10 +16,11 @@ export default function EmployeeList(props) {
         // TODO fetch employee data
 
         setEmpData(dummyEmpData) // TODO transform data
-    })
+    }, [])
 
     const addEmployee = (emp) => {
-        setEmpData(empData.push(emp))
+        console.log(emp)
+        setEmpData(prevState => [...prevState, emp])
     }
 
     const showNewEmployeeForm = () => {
@@ -34,7 +35,7 @@ export default function EmployeeList(props) {
 
     return (
         <>
-            <div className="mb-3 text-3xl font- select-none">Employee Roster</div>
+            <div className="mb-3 text-3xl font-semibold select-none">Employee Roster</div>
             {newEmployeeForm &&
                 <Modal>
                     <NewEmployeeForm
