@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { dummyEmpData } from '../../pages/dummies'
+import { dummyEmpData } from '../dummies'
 import Button from "../Button"
 import Modal from "../Modal"
 import EmployeeListItem from "./EmployeeListItem"
@@ -33,8 +33,8 @@ export default function EmployeeList(props) {
     }
 
     return (
-        <div className="px-8 py-5 bg-stone-100 rounded-tl-lg grow ">
-            <div className="mb-3 text-3xl font-semibold">Employees</div>
+        <>
+            <div className="mb-3 text-3xl font-semibold">Employee Roster</div>
             {newEmployeeForm &&
                 <Modal>
                     <NewEmployeeForm
@@ -51,13 +51,13 @@ export default function EmployeeList(props) {
                 />
                 <Button
                     size="sm"
-                    label="Add Employee"
+                    label="+ Add Employee"
                     onClickHandler={showNewEmployeeForm}
                 />
-                <Button
+                {/* <Button
                     size="sm"
                     label="Pay"
-                />
+                /> */}
 
             </div>
 
@@ -82,7 +82,7 @@ export default function EmployeeList(props) {
                     }
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

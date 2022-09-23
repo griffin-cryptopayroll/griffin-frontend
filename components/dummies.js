@@ -7,7 +7,7 @@ export const dummyEmpData = [
         account: "0x01you",
         payroll: 10000,
         curr: "usdc",
-        date: 23,
+        date: "9/23",
         secLeft: 1088987
     },
     {
@@ -18,7 +18,7 @@ export const dummyEmpData = [
         account: "0x0100000000000",
         payroll: 0,
         curr: "eth",
-        date: 23,
+        date: "9/23",
         secLeft: 1088987
     },
 ]

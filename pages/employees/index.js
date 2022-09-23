@@ -8,7 +8,9 @@ export default function Emplopyees() {
             <Navbar />
             <div className="flex flex-auto">
                 <SidePanel />
-                <EmployeeList />
+                <div className="px-8 py-5 bg-stone-100 rounded-tl-lg grow">
+                    <EmployeeList />
+                </div>
             </div>
         </div>
     )
