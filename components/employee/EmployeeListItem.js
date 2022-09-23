@@ -11,7 +11,7 @@ export default function EmployeeListItem({ data }) {
     const { key, name, email, position, account, payroll, curr, date, secLeft } = data
 
     return (
-        <div className="w-full grid grid-cols-6 gap-6 rounded-lg items-center bg-white p-4 my-2">
+        <div className="w-full grid grid-cols-6 gap-6 rounded-lg items-center bg-white p-4 my-2 shadow">
             <div>{name ?? "--"}</div>
             <div>{position ?? "--"}</div>
             <div>{email ?? "--"}</div>

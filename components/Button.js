@@ -1,16 +1,16 @@
 
 const sizes = {
-    sm: "px-2 py-1 text-md font-light text-white tracking-wider rounded-lg bg-violet-500 cursor-pointer hover:bg-violet-400 transition-all",
-    md: "px-3 py-2 text-xl font-light text-white tracking-wider rounded-lg bg-violet-500 cursor-pointer hover:bg-violet-400 transition-all",
-    lg: "p-4 text-xl font-light tracking-wider text-white rounded-lg bg-violet-500 cursor-pointer hover:bg-violet-400 transition-all"
+    sm: "px-2 py-1 text-md font-light text-white tracking-wider rounded-lg bg-violet-500 cursor-pointer hover:bg-violet-400 transition-all select-none",
+    md: "px-3 py-2 text-xl font-light text-white tracking-wider rounded-lg bg-violet-500 cursor-pointer hover:bg-violet-400 transition-all select-none",
+    lg: "p-4 text-xl font-light tracking-wider text-white rounded-lg bg-violet-500 cursor-pointer hover:bg-violet-400 transition-all select-none"
 }
-export default function Button(props) {
+export default function Button({ label, size, onClickHandler, altText }) {
 
     return <button
-        className={props.size ? sizes[props.size] : sizes.md}
-        onClick={props.onClickHandler}
-        aria-label={props.altText ?? props.label}
+        className={size ? sizes[size] : sizes.md}
+        onClick={onClickHandler}
+        aria-label={altText ?? label}
     >
-        {props.label}
+        {label}
     </button>
 }

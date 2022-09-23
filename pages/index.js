@@ -15,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className=''>
+      <main className=' select-none'>
         <h1 className='fixed left-8 top-6 text-3xl font-semibold'>
           G R I F F I N
         </h1>

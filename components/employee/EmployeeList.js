@@ -34,7 +34,7 @@ export default function EmployeeList(props) {
 
     return (
         <>
-            <div className="mb-3 text-3xl font-semibold">Employee Roster</div>
+            <div className="mb-3 text-3xl font- select-none">Employee Roster</div>
             {newEmployeeForm &&
                 <Modal>
                     <NewEmployeeForm
@@ -62,7 +62,7 @@ export default function EmployeeList(props) {
             </div>
 
             <div className="w-full">
-                <div className="w-full grid grid-cols-6 gap-6 font-bold p-4">
+                <div className="w-full grid grid-cols-6 gap-6 font-bold p-2 select-none">
                     <div>name</div>
                     <div>role</div>
                     <div>email</div>
@@ -70,7 +70,7 @@ export default function EmployeeList(props) {
                     <div>currency</div>
                     <div>scheduled</div>
                 </div>
-                <div className=" max-h-full overflow-auto">
+                <div className="max-h-full overflow-auto">
                     {empData?.length ?
                         empData
                             .filter(({ name }) => name.toLowerCase().includes(searchToken.toLowerCase()))
