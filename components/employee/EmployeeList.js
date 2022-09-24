@@ -19,17 +19,17 @@ export default function EmployeeList(props) {
     }, [])
 
     const addEmployee = (emp) => {
-        console.log(emp)
+        // console.log(emp)
         setEmpData(prevState => [...prevState, emp])
     }
 
     const showNewEmployeeForm = () => {
-        console.log(empData)
+        // console.log(empData)
         setNewEmployeeForm(true)
     }
     const hideNewEmployeeForm = () => {
-        console.log(empData)
-        console.log(typeof empData)
+        // console.log(empData)
+        // console.log(typeof empData)
         setNewEmployeeForm(false)
     }
 
