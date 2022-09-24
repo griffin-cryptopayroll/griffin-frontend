@@ -4,6 +4,7 @@ import Button from "../Button"
 import Modal from "../Modal"
 import EmployeeListItem from "./EmployeeListItem"
 import NewEmployeeForm from "./NewEmployeeForm"
+import { getEmployeeApi } from '../../api/employee'
 
 export default function EmployeeList(props) {
 
@@ -14,8 +15,12 @@ export default function EmployeeList(props) {
     // initialization
     useEffect(() => {
         // TODO fetch employee data
+        getEmployeeApi(1)
+            .then(({ data }) => {
+                setEmpData(data.repeat_false)
+            })
 
-        setEmpData(dummyEmpData) // TODO transform data
+        // TODO transform data
     }, [])
 
     const addEmployee = (emp) => {
@@ -62,7 +67,7 @@ export default function EmployeeList(props) {
 
             </div>
 
-            <div className="w-full">
+            <div className="w-full grow flex flex-col overflow-hidden">
                 <div className="w-full grid grid-cols-6 gap-6 font-bold p-2 select-none">
                     <div>name</div>
                     <div>role</div>
@@ -71,12 +76,12 @@ export default function EmployeeList(props) {
                     <div>currency</div>
                     <div>scheduled</div>
                 </div>
-                <div className="max-h-full overflow-auto">
+                <div className="flex-auto h-0 overflow-auto overscroll-none">
                     {empData?.length ?
                         empData
                             .filter(({ name }) => name.toLowerCase().includes(searchToken.toLowerCase()))
                             .map((employee, i) => ( // TODO once connected to backend, remove i
-                                <EmployeeListItem key={employee.key ?? i} data={employee} />
+                                <EmployeeListItem key={employee.key + i} data={employee} />
                             ))
                         :
                         <></>
