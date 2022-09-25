@@ -4,7 +4,7 @@ import { deleteEmployeeApi } from "../../api/employee";
 import Button from "../Button";
 import Modal from "../Modal";
 
-export default function EmployeeListItem({ data }) {
+export default function EmployeeListItem({ data, removeFromEmployeeList }) {
     const [expanded, setExpanded] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
 
@@ -13,11 +13,13 @@ export default function EmployeeListItem({ data }) {
     }
 
     const handleDelete = () => {
-        console.log(data)
-        if (data?.key) {
+        if (data) {
             deleteEmployeeApi(1, data.key, "free") // replace hard-coded 1 with employerId stored in global state
                 .then((res) => {
                     console.log(res)
+                    // re-fetch employee list
+                    removeFromEmployeeList(data.key)
+
                     setDeleteModal(false)
                 })
                 .catch((err) => {
@@ -51,23 +53,24 @@ export default function EmployeeListItem({ data }) {
                 />
             </div>
         </div>
-        {deleteModal && <Modal>
-            <div className="flex flex-col justify-between space-y-20">
-                <div className="text-2xl font-semibold">
-                    Are you sure you want to delete {name ? name + "'s" : "this"} record?
+        {deleteModal &&
+            <Modal>
+                <div className="flex flex-col justify-between space-y-20">
+                    <div className="text-2xl font-semibold">
+                        Are you sure you want to delete {name ? name + "'s" : "this"} record?
+                    </div>
+                    <div className="flex justify-between">
+                        <Button
+                            label="Confirm"
+                            onClickHandler={handleDelete}
+                        />
+                        <Button
+                            label="Cancel"
+                            onClickHandler={() => { setDeleteModal(false) }}
+                        />
+                    </div>
                 </div>
-                <div className="flex justify-between">
-                    <Button
-                        label="Confirm"
-                        onClickHandler={handleDelete}
-                    />
-                    <Button
-                        label="Cancel"
-                        onClickHandler={() => { setDeleteModal(false) }}
-                    />
-                </div>
-            </div>
-        </Modal>}
+            </Modal>}
     </>
     )
 }

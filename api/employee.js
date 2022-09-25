@@ -63,7 +63,7 @@ export const deleteEmployeeApi = async (employerId, employeeId, employeeType) =>
     DELETE_EMPLOYEE +
     "?employerId=" +
     employerId +
-    "&id=" +
+    "&key=" +
     employeeId +
     "&employType=" +
     employeeType

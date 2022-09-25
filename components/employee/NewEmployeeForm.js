@@ -4,6 +4,12 @@ import Button from "../Button";
 import { iconStyle } from "../../styles/globals";
 import { postEmployeeApi } from "../../api/employee";
 
+const SUPPORTED_CURRENCIES = [
+    'USDC',
+    'ETH',
+    'MATIC'
+]
+
 export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
     const [newEmployee, setNewEmployee] = useState({
         name: "",
@@ -65,6 +71,75 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
                     />
                 </div>
             ))}
+            {/* <div >
+                <label>name</label>
+                <input
+                    type="text"
+                    placeholder="name"
+                    className="w-full p-2 rounded bg-stone-100"
+                    value={newEmployee["currency"]}
+                    onChange={({ target }) => {
+                        setNewEmployee((prevState) => ({
+                            ...prevState,
+                            name: target.value,
+                        }));
+                    }}
+                />
+            </div>
+            <div >
+                <label>email</label>
+                <input
+                    type="email"
+                    placeholder="email"
+                    className="w-full p-2 rounded bg-stone-100"
+                    value={newEmployee["currency"]}
+                    onChange={({ target }) => {
+                        setNewEmployee((prevState) => ({
+                            ...prevState,
+                            email: target.value,
+                        }));
+                    }}
+                />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+                <div>
+                    <label>payroll amount</label>
+                    <input
+                        type="number"
+                        placeholder="payroll amount"
+                        className="w-full p-2 rounded bg-stone-100"
+                        value={newEmployee["payroll"]}
+                        onChange={({ target }) => {
+                            setNewEmployee((prevState) => ({
+                                ...prevState,
+                                payroll: target.value,
+                            }));
+                        }}
+                    />
+                </div>
+                <div>
+                    <label>currency</label>
+                    <select
+                        className="w-full p-2 rounded bg-stone-100"
+                        value={newEmployee["currency"]}
+                        onChange={({ target }) => {
+                            setNewEmployee((prevState) => ({
+                                ...prevState,
+                                curr: target.value,
+                            }));
+                        }}
+                    >
+                        {SUPPORTED_CURRENCIES.map((tokenType) =>
+                            <option
+                                value={tokenType}
+                            >
+                                {tokenType}
+                            </option>
+                        )}
+                    </select>
+                </div>
+            </div> */}
+
             {/* use pre tag to preserve space */}
             <pre>{errorMsg ?? " "}</pre>
             <Button label="Add" onClickHandler={validateEmployee} />

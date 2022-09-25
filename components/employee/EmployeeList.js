@@ -8,7 +8,7 @@ import { getEmployeeApi } from '../../api/employee'
 
 export default function EmployeeList(props) {
 
-    const [empData, setEmpData] = useState(null)
+    const [empData, setEmpData] = useState([])
     const [searchToken, setSearchToken] = useState("")
     const [newEmployeeForm, setNewEmployeeForm] = useState(false)
 
@@ -26,6 +26,10 @@ export default function EmployeeList(props) {
     const addEmployee = (emp) => {
         // console.log(emp)
         setEmpData(prevState => [...prevState, emp])
+    }
+
+    const deleteEmployee = (employeeId) => {
+        setEmpData(prevState => prevState.filter(({ key }) => key !== employeeId))
     }
 
     const showNewEmployeeForm = () => {
@@ -81,7 +85,11 @@ export default function EmployeeList(props) {
                         empData
                             .filter(({ name }) => name.toLowerCase().includes(searchToken.toLowerCase()))
                             .map((employee, i) => ( // TODO once connected to backend, remove i
-                                <EmployeeListItem key={employee.key + i} data={employee} />
+                                <EmployeeListItem
+                                    key={employee.key + i}
+                                    data={employee}
+                                    removeFromEmployeeList={deleteEmployee}
+                                />
                             ))
                         :
                         <></>
