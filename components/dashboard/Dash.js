@@ -3,9 +3,9 @@ import WidgetContainer from "./WidgetContainer";
 
 export default function Dash() {
     return (
-        <div className="h-full max-h-full grid grid-flow-row grid-cols-4 grid-rows-4 gap-6">
+        <div className="h-full max-h-full grid grid-flow-row grid-cols-4 grid-rows-3 gap-6">
             <WidgetContainer
-                col={4}
+                col={2}
                 row={1}
                 title="Total Balance"
             >

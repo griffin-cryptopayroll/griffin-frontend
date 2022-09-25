@@ -5,7 +5,7 @@ import SidePanel from "../components/SidePanel";
 
 export default function Dashboard() {
 
-    return <div className="flex flex-col h-screen w-screen">
+    return <div className="flex flex-col h-screen w-screen overflow-hidden">
         <Navbar>
 
         </Navbar>

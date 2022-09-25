@@ -1,7 +1,7 @@
 import { API_URLS } from "../constants";
 import { axiosInstance } from "./common";
 
-const { GET_EMPLOYEE, GET_EMPLOYER, LOGIN, PAYMENT } = API_URLS;
+const { GET_EMPLOYEE, DELETE_EMPLOYEE, GET_EMPLOYER, LOGIN, PAYMENT } = API_URLS;
 
 export const getEmployeeApi = async (employerId) => {
   console.log(employerId);
@@ -16,14 +16,14 @@ export const loginApi = async (employerId, employerPw) => {
 export const postPaymentApi = async (employerId, name, payroll, curr) => {
   return await axiosInstance.post(
     PAYMENT +
-      "?employerId=" +
-      employerId +
-      "&name=" +
-      name +
-      "&payroll=" +
-      payroll +
-      "&curr=" +
-      curr
+    "?employerId=" +
+    employerId +
+    "&name=" +
+    name +
+    "&payroll=" +
+    payroll +
+    "&curr=" +
+    curr
   );
 };
 
@@ -35,25 +35,37 @@ export const postEmployeeApi = async (employerId, postEmployee) => {
   console.log(postEmployee);
   return await axiosInstance.post(
     GET_EMPLOYEE +
-      "?employerId=" +
-      employerId +
-      "&employType=" +
-      postEmployee.employType +
-      "&key=" +
-      postEmployee.key +
-      "&name=" +
-      postEmployee.name +
-      "&email=" +
-      postEmployee.email +
-      "&position=" +
-      postEmployee.position +
-      "&account=" +
-      postEmployee.account +
-      "&curr=" +
-      postEmployee.curr +
-      "&payroll=" +
-      postEmployee.payroll +
-      "&date=" +
-      postEmployee.date
+    "?employerId=" +
+    employerId +
+    "&employType=" +
+    postEmployee.employType +
+    "&key=" +
+    postEmployee.key +
+    "&name=" +
+    postEmployee.name +
+    "&email=" +
+    postEmployee.email +
+    "&position=" +
+    postEmployee.position +
+    "&account=" +
+    postEmployee.account +
+    "&curr=" +
+    postEmployee.curr +
+    "&payroll=" +
+    postEmployee.payroll +
+    "&date=" +
+    postEmployee.date
   );
 };
+// /employee?employerId=1&id=5&employType=free
+export const deleteEmployeeApi = async (employerId, employeeId, employeeType) => {
+  return await axiosInstance.delete(
+    DELETE_EMPLOYEE +
+    "?employerId=" +
+    employerId +
+    "&id=" +
+    employeeId +
+    "&employType=" +
+    employeeType
+  )
+}
