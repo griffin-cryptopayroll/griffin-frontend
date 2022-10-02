@@ -1,4 +1,5 @@
 export default function Modal(props) {
+    const containerStle = "relative z-" + props.zIndex ?? 10
     return (
         <div className="relative z-10">
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity">

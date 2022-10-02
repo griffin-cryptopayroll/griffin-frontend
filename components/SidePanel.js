@@ -14,11 +14,11 @@ const menuItems = [
         title: "Employees",
         icon: <UserIcon className={iconStyle} />,
     },
-    {
-        href: "/payroll",
-        title: "Payroll",
-        icon: <CircleStackIcon className={iconStyle} />,
-    },
+    // {
+    //     href: "/payroll",
+    //     title: "Payroll",
+    //     icon: <CircleStackIcon className={iconStyle} />,
+    // },
     // {
     //     href: "/about",
     //     title: "about",

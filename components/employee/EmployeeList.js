@@ -11,13 +11,16 @@ export default function EmployeeList(props) {
     const [empData, setEmpData] = useState([])
     const [searchToken, setSearchToken] = useState("")
     const [newEmployeeForm, setNewEmployeeForm] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     // initialization
     useEffect(() => {
         // TODO fetch employee data
+        setLoading(true)
         getEmployeeApi(1)
             .then(({ data }) => {
                 setEmpData(data.repeat_false)
+                setLoading(false)
             })
 
         // TODO transform data
