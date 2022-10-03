@@ -1,20 +1,38 @@
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Dash from "../components/dashboard/Dash";
 import Navbar from "../components/Nav";
 import SidePanel from "../components/SidePanel";
-
+import { authState } from "../states";
 
 export default function Dashboard() {
+    const auth = useRecoilValue(authState)
+    const router = useRouter()
 
-    return <div className="flex flex-col h-screen w-screen overflow-hidden">
-        <Navbar>
+    useEffect(() => {
+        // check for auth
+        if (!auth) {
+            router.push('/auth')
+            return
+        }
 
-        </Navbar>
-        <div className="flex grow">
-            <SidePanel />
-            <div className="p-10 bg-stone-100 rounded-tl-lg grow">
-                <Dash />
+        // fetch dashbaord data from API
+
+    }, [])
+
+    return (auth ?
+        <div className="flex flex-col h-screen w-screen overflow-hidden">
+            <Navbar></Navbar>
+            <div className="flex grow">
+                <SidePanel />
+                <div className="p-10 bg-stone-100 rounded-tl-lg grow">
+                    <Dash />
+                </div>
             </div>
-        </div>
 
-    </div>
+        </div>
+        :
+        <></>
+    )
 }

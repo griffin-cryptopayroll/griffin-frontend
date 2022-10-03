@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Button from "../Button";
 import { iconStyle } from "../../styles/globals";
-import { postEmployeeApi } from "../../api/employee";
+import { postEmployeeApi } from "../../api/employeeAPIs";
 
 const SUPPORTED_CURRENCIES = [
     'USDC',

@@ -1,6 +1,6 @@
 import { TrashIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react"
-import { deleteEmployeeApi } from "../../api/employee";
+import { deleteEmployeeApi } from "../../api/employeeAPIs";
 import { iconStyle } from "../../styles/globals";
 import Button from "../Button";
 import Modal from "../Modal";

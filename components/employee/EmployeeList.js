@@ -4,7 +4,7 @@ import Button from "../Button"
 import Modal from "../Modal"
 import EmployeeListItem from "./EmployeeListItem"
 import NewEmployeeForm from "./NewEmployeeForm"
-import { getEmployeeApi } from '../../api/employee'
+import { getAllEmployeesApi } from '../../api/employeeAPIs'
 
 export default function EmployeeList(props) {
 
@@ -17,7 +17,7 @@ export default function EmployeeList(props) {
     useEffect(() => {
         // TODO fetch employee data
         setLoading(true)
-        getEmployeeApi(1)
+        getAllEmployeesApi(1)
             .then(({ data }) => {
                 setEmpData(data.repeat_false)
                 setLoading(false)

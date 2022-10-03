@@ -1,34 +1,11 @@
 import { API_URLS } from "../constants";
 import { axiosInstance } from "./common";
 
-const { GET_EMPLOYEE, DELETE_EMPLOYEE, GET_EMPLOYER, LOGIN, PAYMENT } = API_URLS;
+const { GET_EMPLOYEE, DELETE_EMPLOYEE, PAYMENT } = API_URLS;
 
-export const getEmployeeApi = async (employerId) => {
+export const getAllEmployeesApi = async (employerId) => {
   console.log(employerId);
   return await axiosInstance.get(GET_EMPLOYEE + "?employerId=" + employerId);
-};
-
-export const loginApi = async (employerId, employerPw) => {
-  return await axiosInstance.get(
-    LOGIN + "?employerId=" + employerId + "&employerPw=" + employerPw
-  );
-};
-export const postPaymentApi = async (employerId, name, payroll, curr) => {
-  return await axiosInstance.post(
-    PAYMENT +
-    "?employerId=" +
-    employerId +
-    "&name=" +
-    name +
-    "&payroll=" +
-    payroll +
-    "&curr=" +
-    curr
-  );
-};
-
-export const getPaymentApi = async (employerId) => {
-  return await axiosInstance.get(PAYMENT + "?employerId=" + employerId);
 };
 
 export const postEmployeeApi = async (employerId, postEmployee) => {
@@ -57,7 +34,7 @@ export const postEmployeeApi = async (employerId, postEmployee) => {
     postEmployee.date
   );
 };
-// /employee?employerId=1&id=5&employType=free
+
 export const deleteEmployeeApi = async (employerId, employeeId, employeeType) => {
   return await axiosInstance.delete(
     DELETE_EMPLOYEE +
@@ -69,3 +46,21 @@ export const deleteEmployeeApi = async (employerId, employeeId, employeeType) =>
     employeeType
   )
 }
+
+export const getPaymentApi = async (employerId) => {
+  return await axiosInstance.get(PAYMENT + "?employerId=" + employerId);
+};
+
+export const postPaymentApi = async (employerId, name, payroll, curr) => {
+  return await axiosInstance.post(
+    PAYMENT +
+    "?employerId=" +
+    employerId +
+    "&name=" +
+    name +
+    "&payroll=" +
+    payroll +
+    "&curr=" +
+    curr
+  );
+};

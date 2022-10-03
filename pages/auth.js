@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import Button from '../components/Button'
 
 export default function Auth() {
-    const [username, setUsername] = useState()
-    const [password, setPassword] = useState()
+    const router = useRouter()
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
     const handleLogin = () => {
         if (!username) {
@@ -14,6 +16,7 @@ export default function Auth() {
         }
         else {
             // TODO authenticate
+
         }
     }
 
