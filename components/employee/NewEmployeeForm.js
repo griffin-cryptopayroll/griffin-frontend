@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import Button from "../Button";
+import Button from "../buttons/Button";
 import { iconStyle } from "../../styles/globals";
 import { postEmployeeApi } from "../../api/employeeAPIs";
 

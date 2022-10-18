@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import Button from '../components/Button'
+import Button from '../components/buttons/Button'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { authState } from '../states'
 

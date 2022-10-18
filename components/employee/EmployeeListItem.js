@@ -2,7 +2,7 @@ import { TrashIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react"
 import { deleteEmployeeApi } from "../../api/employeeAPIs";
 import { iconStyle } from "../../styles/globals";
-import Button from "../Button";
+import Button from "../buttons/Button";
 import Modal from "../Modal";
 
 export default function EmployeeListItem({ data, removeFromEmployeeList }) {

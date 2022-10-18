@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import Button from '../components/Button'
+import Button from '../components/buttons/Button'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {

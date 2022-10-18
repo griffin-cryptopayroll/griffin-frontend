@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { dummyEmpData } from '../dummies'
-import Button from "../Button"
+import Button from "../buttons/Button"
 import Modal from "../Modal"
 import EmployeeListItem from "./EmployeeListItem"
 import NewEmployeeForm from "./NewEmployeeForm"
