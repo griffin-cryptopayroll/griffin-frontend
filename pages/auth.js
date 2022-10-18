@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Button from '../components/Button'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { authState } from '../states'
+
 
 export default function Auth() {
     const router = useRouter()
+    const setAuth = useSetRecoilState(authState)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -15,7 +19,8 @@ export default function Auth() {
             alert('no password')
         }
         else {
-            // TODO authenticate
+            // TODO authenticate on server
+
 
         }
     }

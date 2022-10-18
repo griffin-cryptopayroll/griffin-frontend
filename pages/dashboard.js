@@ -13,7 +13,7 @@ export default function Dashboard() {
     useEffect(() => {
         // check for auth
         if (!auth) {
-            router.push('/auth')
+            // router.push('/auth')
             return
         }
 
@@ -21,7 +21,8 @@ export default function Dashboard() {
 
     }, [])
 
-    return (auth ?
+    return (
+        // auth ?
         <div className="flex flex-col h-screen w-screen overflow-hidden">
             <Navbar></Navbar>
             <div className="flex grow">
@@ -32,7 +33,7 @@ export default function Dashboard() {
             </div>
 
         </div>
-        :
-        <></>
+        // :
+        // <></>
     )
 }
