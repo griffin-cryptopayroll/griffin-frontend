@@ -13,16 +13,13 @@ const SUPPORTED_CURRENCIES = [
 export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
     const [newEmployee, setNewEmployee] = useState({
         name: "",
-        email: "",
         position: "",
-        account: "",
+        wallet: "",
         payroll: 0,
         curr: "usdc",
-        date: 0,
-
-        // TODO should add & edit this data
-        employType: "free",
-        key: 2207,
+        email: "",
+        start: 0,
+        end: 0,
     });
     const [errorMsg, setErrorMsg] = useState();
 
@@ -40,6 +37,7 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
                 hideNewEmployeeForm();
             }).catch(err => {
                 alert(err)
+                setErrorMsg(err)
             })
 
     };
