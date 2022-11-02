@@ -1,5 +1,7 @@
-import TotalBalance from "./TotalBalance";
+import TotalBalance from "./Widgets/TotalBalance";
 import WidgetContainer from "./WidgetContainer";
+import BalanceComposition from "./Widgets/BalanceComposition";
+import UpcomingPayments from "./Widgets/UpcomingPayments";
 
 export default function Dash() {
     return (
@@ -12,12 +14,10 @@ export default function Dash() {
 
             <WidgetContainer
                 col="col-span-1"
-                row="row-span-2"
+                row="row-span-1"
                 title="Balance Composition"
             >
-                <>
-
-                </>
+                <BalanceComposition />
             </WidgetContainer>
 
             <WidgetContainer
@@ -25,25 +25,19 @@ export default function Dash() {
                 row="row-span-1"
                 title="Upcoming"
             >
-                <></>
+                <UpcomingPayments />
             </WidgetContainer>
 
             <WidgetContainer
                 col="col-span-2"
                 row="row-span-1"
-                title="Payroll Activities"
+                title="Post Activities"
             >
                 <></>
             </WidgetContainer>
 
             <WidgetContainer
                 title="Latest Transactions"
-            >
-                <></>
-            </WidgetContainer>
-
-            <WidgetContainer
-                title="Payroll Summary"
             >
                 <></>
             </WidgetContainer>

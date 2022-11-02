@@ -1,15 +1,16 @@
-import { Chart, ArcElement } from 'chart.js'
-Chart.register(ArcElement);
+import { Chart, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2';
+
+Chart.register(ArcElement, Tooltip);
+
 
 const data = {
     labels: [
-        'Red',
-        'Purple',
-        'Yellow'
+        'Projected',
+        'Remaining',
     ],
     datasets: [{
-        label: 'My First Dataset',
+        label: 'Total Balance',
         data: [30, 50],
         backgroundColor: [
             // 'rgb(255, 99, 132)',
@@ -17,7 +18,7 @@ const data = {
             '#eee'
             // 'rgb(255, 205, 86)'
         ],
-        hoverOffset: 4
+        hoverOffset: 2
     }]
 };
 
