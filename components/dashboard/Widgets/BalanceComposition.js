@@ -1,6 +1,5 @@
-
-import { Chart, ArcElement } from 'chart.js'
-Chart.register(ArcElement);
+import { Chart, ArcElement, Tooltip } from 'chart.js'
+Chart.register(ArcElement, Tooltip);
 import { Doughnut } from 'react-chartjs-2';
 
 const data = {
@@ -25,9 +24,11 @@ export default function BalanceComposition() {
     const amount = 100000
 
     return (
-        <div className="font-semibold text-2xl text-slate-800 ">
-            ${amount.toLocaleString()} in USD
-            <Doughnut data={data} width={10} height={10} />
+        <div className="font-semibold text-2xl text-slate-800">
+            {/* ${amount.toLocaleString()} in USD */}
+            <div className=' h-full'>
+                <Doughnut data={data} width={100} height={100} />
+            </div>
         </div>
     )
 }

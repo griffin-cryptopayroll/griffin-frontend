@@ -13,8 +13,6 @@ export default function Dash() {
             </WidgetContainer>
 
             <WidgetContainer
-                col="col-span-1"
-                row="row-span-1"
                 title="Balance Composition"
             >
                 <BalanceComposition />
