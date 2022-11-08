@@ -5,6 +5,7 @@ import WallectConnectButton from "./buttons/WallectConnectButton";
 
 const navItems = [
     <Button
+        key={1}
         label="Deposit"
         onClickHandler={() => {
             // handle deposit
