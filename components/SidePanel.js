@@ -14,11 +14,11 @@ const menuItems = [
         title: "Employees",
         icon: <UserIcon className={iconStyle} />,
     },
-    // {
-    //     href: "/payroll",
-    //     title: "Payroll",
-    //     icon: <CircleStackIcon className={iconStyle} />,
-    // },
+    {
+        href: "/payroll",
+        title: "Payroll",
+        icon: <CircleStackIcon className={iconStyle} />,
+    },
     // {
     //     href: "/about",
     //     title: "about",
@@ -26,20 +26,24 @@ const menuItems = [
     // },
 ];
 
+const normalStyle = "flex items-center pl-6 pr-10 py-5 text-lg font-light tracking-wider cursor-pointer hover:bg-violet-100 transition-all"
+const focusedStyle = normalStyle + "bg-stone-300"
+
 export default function SidePanel() {
-    const [activeItem, setActiveItem] = useState()
+    const [activeItem, setActiveItem] = useState("")
 
     return (
         <div className="h-full bg-white select-none">
             {menuItems.map(({ href, title, icon }) => {
-                return <Link key={title} href={href}>
-                    <div className="flex items-center pl-6 pr-10 py-5 text-lg font-light tracking-wider cursor-pointer hover:bg-violet-100 transition-all">
-                        {icon}
-                        <div>
-                            {title}
+                return (
+                    <Link key={title} href={href} onClick={() => { setActiveItem(title) }}>
+                        <div className={title === activeItem ? focusedStyle : normalStyle}>
+                            {icon}
+                            <div>
+                                {title}
+                            </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>)
             })}
         </div>)
 }
