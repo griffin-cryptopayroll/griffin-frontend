@@ -22,7 +22,7 @@ export default function Navbar(props) {
             <div className="text-3xl font-semibold select-none">G R I F F I N</div>
             <Button
                 onClickHandler={() => {
-                    pingApi().then(msg => { alert(msg) }).catch(err => { console.log(err) })
+                    pingApi().then(({ data }) => { alert(data.message) }).catch(err => { console.log(err) })
                 }}
             >
                 Ping

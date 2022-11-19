@@ -17,9 +17,9 @@ export default function EmployeeList(props) {
     useEffect(() => {
         // TODO fetch employee data
         setLoading(true)
-        getAllEmployeesApi(1)
+        getAllEmployeesApi("6697a96b-2325-4351-ac7f-279956612dc6")
             .then(({ data }) => {
-                setEmpData(data.repeat_false)
+                setEmpData(data)
                 setLoading(false)
             })
 

@@ -5,13 +5,13 @@ const { GET_EMPLOYEE_MULTI, GET_EMPLOYEE_SINGLE, POST_EMPLOYEE, DELETE_EMPLOYEE,
 
 export const getAllEmployeesApi = async (employerId) => {
   console.log(employerId);
-  return await axiosInstance.get(GET_EMPLOYEE_SINGLE + "?employer_gid=" + employerId);
+  return await axiosInstance.get(GET_EMPLOYEE_MULTI + "?employer_gid=" + employerId);
 };
 
 export const getSingleEmployeeApi = async (employeeId, employerId) => {
   console.log(employeeId, employerId)
   return await axiosInstance.get(
-    GET_EMPLOYEE_MULTI +
+    GET_EMPLOYEE_SINGLE +
     "?gid" + employeeId +
     "&employer_gid" + employerId
   )
