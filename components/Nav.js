@@ -24,7 +24,6 @@ export default function Navbar(props) {
             <nav className="bg-white h-16 px-6 flex items-center justify-between">
                 <div className="text-3xl font-semibold select-none">G R I F F I N</div>
                 <Button
-                    size="sm"
                     onClickHandler={() => {
                         pingApi().then(({ data }) => { alert(data.message) }).catch(err => { console.log(err) })
                     }}
