@@ -20,14 +20,40 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
         email: "",
         start: 0,
         end: 0,
+        pay_freq: "",
+        payday: "",
+        employ_type: ""
     });
     const [errorMsg, setErrorMsg] = useState();
 
     const validateEmployee = async () => {
         // TODO perform validation
-        // name must be unique
 
-        // TODO post new employee to server
+        // REQ - str: name
+
+        // OPT - str: position
+
+        // REQ - str: wallet
+        // wallet follows nightfall wallet format
+
+        // REQ - num: payroll
+        // (maybe) cap max amount according to balance and projected payroll
+
+        // REQ - str: email
+        // email must follow format: [abc]@[abc].[abc]
+        // Server Validation: email must be unique
+
+        // REQ - date: start
+        // (maybe) start date may not be one pay cycle prior to today
+
+        // OPT - date: end
+        // end date must be no earlier than start date
+
+        //pay_freq: "",
+        //payday: "",
+        //employ_type: ""
+
+        //  post new employee to server
         // TODO save employerID and use it using recoil or something states management
         console.log("awgeawwea", newEmployee.date + newEmployee.payroll);
         postEmployeeApi(1, newEmployee) // example code using api, example just put 1
