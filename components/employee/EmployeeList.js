@@ -89,7 +89,7 @@ export default function EmployeeList(props) {
                             .filter(({ name }) => name.toLowerCase().includes(searchToken.toLowerCase()))
                             .map((employee, i) => ( // TODO once connected to backend, remove i
                                 <EmployeeListItem
-                                    key={employee.key + i}
+                                    key={i}
                                     data={employee}
                                     removeFromEmployeeList={deleteEmployee}
                                 />
