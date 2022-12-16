@@ -29,15 +29,15 @@ export const dummyPayrolls = [
         name: "Lindsey Stroud",
         role: "Marketing",
         currency: "USDC",
-        payday: "12/1",
-        payroll: 62442 
+        payday: "1/1",
+        payroll: 10000 
     },
     {
         id: 2,
         name: "Nicci Troiani",
         role: "Infra Engineer",
-        currency: "USDC",
-        payday: "12/2",
-        payroll: 82392
+        currency: "ETH",
+        payday: "1/2",
+        payroll: 5
     }
 ]
