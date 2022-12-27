@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { pingApi } from "../api/authAPIs";
 import Button from "./buttons/Button";
-import WallectConnectButton from "./buttons/WallectConnectButton";
+
+
+import { useWeb3Modal, Web3Button } from '@web3modal/react'
 
 const navItems = [
     <Button
@@ -28,17 +30,23 @@ export default function Navbar(props) {
                 >
                     Ping
                 </Button>
-                {wallet ?
-                    <>
-                        <Button
-                            label={wallet}
-                        />
-                    </>
-                    :
-                    <>
-                        <WallectConnectButton />
-                    </>
-                }
+                <div className="flex space-x-2 items-center">
+                    <Button
+                        onClickHandler={() => { }}
+                    >
+                        Deposit
+                    </Button>
+
+                    <Button
+                        onClickHandler={() => { }}
+                    >
+                        Withdraw
+                    </Button>
+
+                    <Web3Button
+
+                    />
+                </div>
 
             </nav>
 
