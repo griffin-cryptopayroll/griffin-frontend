@@ -34,7 +34,7 @@ export default function Home() {
         </div>
 
         <h1 className='fixed left-8 bottom-1/2 text-6xl font-thin'>
-          Private Payroll Solusions <br />for Enterprises
+          Private Payroll Solutions <br />for Enterprises
         </h1>
 
         <h1 className='fixed left-8 bottom-8 text-md font-light'>
