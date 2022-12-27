@@ -2,8 +2,7 @@ import { pingApi } from "../api/authAPIs";
 import Button from "./buttons/Button";
 import { useAccount } from 'wagmi'
 
-
-import { useWeb3Modal, Web3Button } from '@web3modal/react'
+import { useWeb3Modal, Web3Button } from '@web3modal/react';
 import WalletManager from "./buttons/WalletManager";
 
 const navItems = [
