@@ -34,16 +34,18 @@ export default function SidePanel() {
 
     return (
         <div className="h-full bg-white select-none">
-            {menuItems.map(({ href, title, icon }) => {
+            {menuItems.map(({ href, title, icon }, i) => {
                 return (
-                    <Link key={title} href={href} onClick={() => { setActiveItem(title) }}>
-                        <div className={title === activeItem ? focusedStyle : normalStyle}>
-                            {icon}
-                            <div>
-                                {title}
+                    <div key={i} onClick={() => { setActiveItem(title) }}>
+                        <Link key={title} href={href} >
+                            <div className={title === activeItem ? focusedStyle : normalStyle}>
+                                {icon}
+                                <div>
+                                    {title}
+                                </div>
                             </div>
-                        </div>
-                    </Link>)
+                        </Link>
+                    </div>)
             })}
         </div>)
 }

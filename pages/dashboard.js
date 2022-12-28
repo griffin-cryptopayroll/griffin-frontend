@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Dash from "../components/dashboard/Dash";
@@ -8,7 +7,6 @@ import { authState } from "../states";
 
 export default function Dashboard() {
     const auth = useRecoilValue(authState)
-    const router = useRouter()
 
     useEffect(() => {
         // check for auth

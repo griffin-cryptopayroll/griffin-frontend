@@ -2,20 +2,30 @@ import TotalBalance from "./Widgets/TotalBalance";
 import WidgetContainer from "./WidgetContainer";
 import BalanceComposition from "./Widgets/BalanceComposition";
 import UpcomingPayments from "./Widgets/UpcomingPayments";
+import { useAccount, useBalance } from "wagmi";
 
 export default function Dash() {
+    const { address } = useAccount()
+    const ethBalance = useBalance({ address: address })
+    const usdcBalance = useBalance({ address: address })
+    const maticBalance = useBalance({ address: address })
+
     return (
         <div className="h-full max-h-full grid grid-flow-row grid-cols-4 grid-rows-3 gap-6 dense">
             <WidgetContainer
                 title="Payroll to Balance"
             >
-                <TotalBalance />
+                <TotalBalance
+
+                />
             </WidgetContainer>
 
             <WidgetContainer
                 title="Balance Composition"
             >
-                <BalanceComposition />
+                <BalanceComposition
+                    address={address}
+                />
             </WidgetContainer>
 
             <WidgetContainer
