@@ -1,8 +1,9 @@
 import { Chart, ArcElement, Tooltip } from 'chart.js'
 Chart.register(ArcElement, Tooltip);
 import { Doughnut } from 'react-chartjs-2';
+import { useBalance } from 'wagmi';
 
-const data = {
+const chartData = {
     labels: [
         'ETH',
         'MATIC',
@@ -20,15 +21,12 @@ const data = {
     }]
 };
 
-export default function BalanceComposition() {
-    const amount = 100000
+export default function BalanceComposition({ address }) {
+    const { data } = useBalance({ address: address })
 
     return (
-        <div className="font-semibold text-2xl text-slate-800">
-            {/* ${amount.toLocaleString()} in USD */}
-            <div className=' h-full'>
-                <Doughnut data={data} width={100} height={100} />
-            </div>
+        <div className="w-1/2 font-semibold text-2xl text-slate-800">
+            <Doughnut data={chartData} width={100} height={100} />
         </div>
     )
 }

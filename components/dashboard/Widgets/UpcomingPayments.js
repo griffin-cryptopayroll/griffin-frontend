@@ -30,13 +30,13 @@ export default function UpcomingPayments() {
         <>
             {/* <div className="w-full grow flex flex-col overflow-hidden"> */}
             <div className="w-full grid grid-cols-4 gap-1 p-2 select-none even:bg-stone-100">
-                {entries.map(entry => (
-                    <>
+                {entries.map((entry, i) => (
+                    <div key={i}>
                         <div>{entry.name}</div>
                         <div>{entry.role}</div>
                         <div>{entry.amount} {entry.currency}</div>
                         <div>{entry.date}</div>
-                    </>
+                    </div>
                 ))}
             </div>
             {/* </div> */}
