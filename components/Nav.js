@@ -1,9 +1,10 @@
-import { useState } from "react";
 import { pingApi } from "../api/authAPIs";
 import Button from "./buttons/Button";
+import { useAccount } from 'wagmi'
 
 
 import { useWeb3Modal, Web3Button } from '@web3modal/react'
+import WalletManager from "./buttons/WalletManager";
 
 const navItems = [
     <Button
@@ -17,13 +18,15 @@ const navItems = [
 ]
 
 export default function Navbar(props) {
-    const [wallet, setWallet] = useState(null)
+    const { isConnected } = useAccount()
+    const { open } = useWeb3Modal()
 
     return (
         <>
             <nav className="bg-white h-16 px-6 flex items-center justify-between">
                 <div className="text-3xl font-semibold select-none">G R I F F I N</div>
                 <Button
+                    size="sm"
                     onClickHandler={() => {
                         pingApi().then(({ data }) => { alert(data.message) }).catch(err => { console.log(err) })
                     }}
@@ -31,21 +34,18 @@ export default function Navbar(props) {
                     Ping
                 </Button>
                 <div className="flex space-x-2 items-center">
-                    <Button
-                        onClickHandler={() => { }}
-                    >
-                        Deposit
-                    </Button>
-
-                    <Button
-                        onClickHandler={() => { }}
-                    >
-                        Withdraw
-                    </Button>
-
-                    <Web3Button
-
-                    />
+                    {isConnected &&
+                        <Button onClickHandler={() => { }}>
+                            Deposit
+                        </Button>
+                    }
+                    {isConnected &&
+                        <Button onClickHandler={() => { }}>
+                            Withdraw
+                        </Button>
+                    }
+                    {/* <Web3Button balance="show"/> */}
+                    <WalletManager />
                 </div>
 
             </nav>
