@@ -5,9 +5,14 @@ import { iconStyle } from "../../styles/globals";
 import { postEmployeeApi } from "../../api/employeeAPIs";
 
 const SUPPORTED_CURRENCIES = [
-    'USDC',
     'ETH',
-    'MATIC'
+    'MATIC',
+    'USDC',
+];
+
+const EMPLOYMENT_TYPES = [
+    'Permanent',
+    'Freelance'
 ]
 
 export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
@@ -24,7 +29,6 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
         payday: "",
         employ_type: ""
     });
-    const [errorMsg, setErrorMsg] = useState();
 
     const validateEmployee = async () => {
         // TODO perform validation
@@ -65,7 +69,19 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
                 alert(err)
                 setErrorMsg(err)
             })
+    };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const data = {
+            name: event.target.name.value,
+            position: event.target.position.value,
+            wallet: event.target.wallet.value,
+            payroll: event.target.payroll.value,
+            currency: event.target.currency.value,
+            email: event.target.email.value
+        }
     };
 
     return (
@@ -77,96 +93,96 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
                     onClick={hideNewEmployeeForm}
                 />
             </div>
-            {Object.keys(newEmployee).map((property, i) => (
-                // eslint-disable-next-line react/no-unknown-property
-                <div key={i}>
-                    <label>{property}</label>
-                    <input
-                        type="text"
-                        placeholder={property}
-                        className="w-full p-2 rounded bg-stone-100"
-                        value={newEmployee[property]}
-                        onChange={({ target }) => {
-                            setNewEmployee((prevState) => ({
-                                ...prevState,
-                                [property]: target.value,
-                            }));
-                        }}
-                    />
-                </div>
-            ))}
-            {/* <div >
-                <label>name</label>
-                <input
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="name">Name</label>
+                <input  
+                    id="name" 
+                    name="name"
+                    className="w-full p-2 rounded bg-stone-100"
                     type="text"
-                    placeholder="name"
+                    pattern="[a-zA-Z .,'-]+"
+                    title="Please enter a valid name."
+                    required
+                    placeholder="John Doe"/>
+                
+                <label htmlFor="position">Position</label>
+                <input  
+                    id="position" 
+                    name="position"
                     className="w-full p-2 rounded bg-stone-100"
-                    value={newEmployee["currency"]}
-                    onChange={({ target }) => {
-                        setNewEmployee((prevState) => ({
-                            ...prevState,
-                            name: target.value,
-                        }));
-                    }}
-                />
-            </div>
-            <div >
-                <label>email</label>
-                <input
-                    type="email"
-                    placeholder="email"
-                    className="w-full p-2 rounded bg-stone-100"
-                    value={newEmployee["currency"]}
-                    onChange={({ target }) => {
-                        setNewEmployee((prevState) => ({
-                            ...prevState,
-                            email: target.value,
-                        }));
-                    }}
-                />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-                <div>
-                    <label>payroll amount</label>
-                    <input
-                        type="number"
-                        placeholder="payroll amount"
-                        className="w-full p-2 rounded bg-stone-100"
-                        value={newEmployee["payroll"]}
-                        onChange={({ target }) => {
-                            setNewEmployee((prevState) => ({
-                                ...prevState,
-                                payroll: target.value,
-                            }));
-                        }}
-                    />
-                </div>
-                <div>
-                    <label>currency</label>
-                    <select
-                        className="w-full p-2 rounded bg-stone-100"
-                        value={newEmployee["currency"]}
-                        onChange={({ target }) => {
-                            setNewEmployee((prevState) => ({
-                                ...prevState,
-                                curr: target.value,
-                            }));
-                        }}
-                    >
-                        {SUPPORTED_CURRENCIES.map((tokenType) =>
-                            <option
-                                value={tokenType}
-                            >
-                                {tokenType}
-                            </option>
-                        )}
-                    </select>
-                </div>
-            </div> */}
+                    type="text"
+                    placeholder="CEO"/>
 
-            {/* use pre tag to preserve space */}
-            <pre>{errorMsg ?? " "}</pre>
-            <Button label="Add" onClickHandler={validateEmployee} />
+                <label htmlFor="wallet">Wallet</label>
+                <input 
+                    id="wallet" 
+                    name="wallet"
+                    className="w-full p-2 rounded bg-stone-100"
+                    type="text"
+                    pattern="0x[a-fA-F0-9]{40}"
+                    title="The wallet address must be a 42-characters hexadecimal number."
+                    required
+                    placeholder="0x..."/>
+
+                <label htmlFor="payroll">Payroll</label>
+                <input 
+                    id="payroll"
+                    name="payroll"
+                    className="w-full p-2 rounded bg-stone-100"
+                    type="number"
+                    min="0"
+                    required
+                    placeholder="0"/>
+
+                <label htmlFor="currency">Currency</label>
+                <select 
+                    id="currency" 
+                    name="currency"
+                    className="w-full p-2 rounded bg-stone-100"
+                    required>
+                    {SUPPORTED_CURRENCIES.map((currency, i) => (
+                        <option key={i} value={currency + "USDT"}>{currency}</option>
+                    ))}
+                </select>
+
+                <label htmlFor="email">Email</label>
+                <input
+                    id="email"
+                    name="email"
+                    className="w-full p-2 rounded bg-stone-100"
+                    type="email"
+                    required
+                    placeholder="example@domain.com"/>
+
+                <label htmlFor="startDate">Start Date</label>
+                <input
+                    id="startDate"
+                    name="startDate"
+                    className="w-full p-2 rounded bg-stone-100"
+                    type="date"
+                    required />
+                
+                <label htmlFor="endDate">End Date</label>
+                <input
+                    id="endDate"
+                    name="endDate"
+                    className="w-full p-2 rounded bg-stone-100"
+                    type="date"
+                    required />
+
+                <label htmlFor="employmentType">Employment Type</label>
+                <select 
+                    id="employmentType" 
+                    name="currenemploymentTypecy"
+                    className="w-full p-2 rounded bg-stone-100"
+                    required>
+                    {EMPLOYMENT_TYPES.map((type, i) => (
+                        <option key={i} value={type}>{type}</option>
+                    ))}
+                </select>
+
+                <button type="submit">Add</button>
+            </form>
         </div>
     );
 }
