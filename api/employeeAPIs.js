@@ -1,7 +1,7 @@
 import { API_URLS } from "../constants";
 import { axiosInstance } from "./common";
 
-const { GET_EMPLOYEE_MULTI, GET_EMPLOYEE_SINGLE, POST_EMPLOYEE, DELETE_EMPLOYEE, PAYMENT } = API_URLS;
+const { GET_EMPLOYEE_MULTI, GET_EMPLOYEE_SINGLE, POST_EMPLOYEE, DELETE_EMPLOYEE, GET_PAYMENT } = API_URLS;
 
 export const getAllEmployeesApi = async (employerId) => {
   console.log(employerId);
@@ -41,10 +41,11 @@ export const deleteEmployeeApi = async (employerId, employeeId) => {
   )
 }
 
-export const getPaymentApi = async (employerId) => {
+export const getPaymentApi = async (employeeId, employerId) => {
   return await axiosInstance.get(
-    PAYMENT +
-    "?employerId=" + employerId
+    GET_PAYMENT +
+    "?gid=" + employeeId +
+    "&employer_gid=" + employerId
   );
 };
 
