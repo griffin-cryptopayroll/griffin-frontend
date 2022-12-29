@@ -26,10 +26,13 @@ export const postEmployeeApi = async (employerId, Employee) => {
     "&wallet=" + Employee.wallet +
     "&payroll=" + Employee.payroll +
     "&currency=" + Employee.currency +
+    "&pay_freq=" + Employee.pay_freq +
     "&email=" + Employee.email +
-    "&employer_gid=" + employerId +
+    "&employer_gid=" + Employee.employer_gid +
+    "&employ_type=" + Employee.employ_type +
     "&work_start=" + Employee.start +
-    "&work_end=" + Employee.end
+    "&work_end=" + Employee.end +
+    "&payday=20221231"
   );
 };
 

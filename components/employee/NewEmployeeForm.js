@@ -11,8 +11,8 @@ const SUPPORTED_CURRENCIES = [
 ];
 
 const EMPLOYMENT_TYPES = [
-    'Permanent',
-    'Freelance'
+    'permanent',
+    'freelance'
 ]
 
 export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
@@ -21,67 +21,38 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
         position: "",
         wallet: "",
         payroll: 0,
-        curr: "usdc",
+        currency: "USDC",
         email: "",
         start: 0,
         end: 0,
         pay_freq: "",
-        payday: "",
         employ_type: ""
     });
-
-    const validateEmployee = async () => {
-        // TODO perform validation
-
-        // REQ - str: name
-
-        // OPT - str: position
-
-        // REQ - str: wallet
-        // wallet follows nightfall wallet format
-
-        // REQ - num: payroll
-        // (maybe) cap max amount according to balance and projected payroll
-
-        // REQ - str: email
-        // email must follow format: [abc]@[abc].[abc]
-        // Server Validation: email must be unique
-
-        // REQ - date: start
-        // (maybe) start date may not be one pay cycle prior to today
-
-        // OPT - date: end
-        // end date must be no earlier than start date
-
-        //pay_freq: "",
-        //payday: "",
-        //employ_type: ""
-
-        //  post new employee to server
-        // TODO save employerID and use it using recoil or something states management
-        console.log("awgeawwea", newEmployee.date + newEmployee.payroll);
-        postEmployeeApi(1, newEmployee) // example code using api, example just put 1
-            .then(res => {
-                console.log(res);
-                addEmployee(newEmployee);
-                hideNewEmployeeForm();
-            }).catch(err => {
-                alert(err)
-                setErrorMsg(err)
-            })
-    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const data = {
+        const newEmployee = {
             name: event.target.name.value,
             position: event.target.position.value,
             wallet: event.target.wallet.value,
             payroll: event.target.payroll.value,
             currency: event.target.currency.value,
-            email: event.target.email.value
+            pay_freq: event.target.payFrequency.value,
+            email: event.target.email.value,
+            employer_gid: "2cb6b685-47b0-4299-bf6a-cb9bd8248f0d", // TO DO: get employer GID
+            employ_type: event.target.employmentType.value,
+            start: event.target.startDate.value.split("-").join(""),
+            end: event.target.endDate.value.split("-").join("")
         }
+
+        postEmployeeApi(1, newEmployee) // TO DO: get employer ID
+         .then(response => {
+            addEmployee(newEmployee);
+            hideNewEmployeeForm();
+         }).catch(error => {
+            alert(error);
+         })
     };
 
     return (
@@ -145,6 +116,16 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
                     ))}
                 </select>
 
+                <label htmlFor="payFrequency">Frequency</label>
+                <select 
+                    id="payFrequency" 
+                    name="payFrequency"
+                    className="w-full p-2 rounded bg-stone-100"
+                    required>
+                    <option value="D">Daily</option>
+                    <option value="W">Weekly</option>
+                </select>
+
                 <label htmlFor="email">Email</label>
                 <input
                     id="email"
@@ -153,6 +134,17 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
                     type="email"
                     required
                     placeholder="example@domain.com"/>
+
+                <label htmlFor="employmentType">Employment Type</label>
+                <select 
+                    id="employmentType" 
+                    name="currenemploymentTypecy"
+                    className="w-full p-2 rounded bg-stone-100"
+                    required>
+                    {EMPLOYMENT_TYPES.map((type, i) => (
+                        <option key={i} value={type}>{type[0].toUpperCase() + type.substring(1)}</option>
+                    ))}
+                </select>
 
                 <label htmlFor="startDate">Start Date</label>
                 <input
@@ -169,17 +161,6 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
                     className="w-full p-2 rounded bg-stone-100"
                     type="date"
                     required />
-
-                <label htmlFor="employmentType">Employment Type</label>
-                <select 
-                    id="employmentType" 
-                    name="currenemploymentTypecy"
-                    className="w-full p-2 rounded bg-stone-100"
-                    required>
-                    {EMPLOYMENT_TYPES.map((type, i) => (
-                        <option key={i} value={type}>{type}</option>
-                    ))}
-                </select>
 
                 <button type="submit">Add</button>
             </form>
