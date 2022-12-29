@@ -1,23 +1,43 @@
+import { useState, useEffect } from 'react'
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { iconStyle } from "../../styles/globals";
 import Button from "../buttons/Button";
 import { getPriceApi } from "../../api/priceAPIs";
 
-function getTotalUSD(payrolls) {
-	const ETH2USD = 1271;
-	const USDC2USD = 1;
+function getTotalPayroll(payrolls, price) {
 	let total = 0;
 	for (let payroll of payrolls) {
 		if (payroll.currency === "ETH") {
-			total += payroll.payroll * ETH2USD;
+			total += payroll.payroll * price.ethusdt;
+		} else if (payroll.currency === "MATIC") {
+			total += payroll.payroll * price.maticusdt;
 		} else if (payroll.currency === "USDC") {
-			total += payroll.payroll * USDC2USD;
+			total += payroll.payroll * price.usdcusdt;
 		}
 	}
 	return total;
 }
 
 export default function ConfirmPayment({payrolls, cancelPayment}) {
+	const [price, setPrice] = useState({
+		"ethusdt": 0,
+		"maticusdt": 0,
+		"usdcusdt": 0
+	});
+
+	useEffect(() => {
+		getPriceApi()
+			.then(({ data }) => {
+				setPrice(data);
+			});
+	}, []);
+
+	const totalPayroll = new Intl.NumberFormat("en-US", {
+		style: "currency", 
+		currency: "USD", 
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2});
+
 	return (
 		<div className="flex-col">
 			<div className="flex justify-between">
@@ -39,7 +59,7 @@ export default function ConfirmPayment({payrolls, cancelPayment}) {
 				{payrolls.length > 1 ? 
 					<tr>
 						<td className="py-3">Total</td>
-						<td>{`$${getTotalUSD(payrolls)}`}</td>
+						<td>{totalPayroll.format(getTotalPayroll(payrolls, price))}</td>
 					</tr> 
 					: 
 					null
