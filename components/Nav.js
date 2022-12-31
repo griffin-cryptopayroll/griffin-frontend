@@ -18,8 +18,6 @@ const navItems = [
 ]
 
 export default function Navbar(props) {
-    const { isConnected } = useAccount()
-    const { open } = useWeb3Modal()
 
     return (
         <>
@@ -33,21 +31,8 @@ export default function Navbar(props) {
                 >
                     Ping
                 </Button>
-                <div className="flex space-x-2 items-center">
-                    {isConnected &&
-                        <Button onClickHandler={() => { }}>
-                            Deposit
-                        </Button>
-                    }
-                    {isConnected &&
-                        <Button onClickHandler={() => { }}>
-                            Withdraw
-                        </Button>
-                    }
-                    {/* <Web3Button balance="show"/> */}
-                    <WalletManager />
-                </div>
 
+                <WalletManager />
             </nav>
 
 
