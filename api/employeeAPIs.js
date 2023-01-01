@@ -17,7 +17,7 @@ export const getSingleEmployeeApi = async (employeeId, employerId) => {
   )
 }
 
-export const postEmployeeApi = async (employerId, Employee) => {
+export const postEmployeeApi = async (Employee) => {
   console.log(Employee);
   return await axiosInstance.post(
     POST_EMPLOYEE +

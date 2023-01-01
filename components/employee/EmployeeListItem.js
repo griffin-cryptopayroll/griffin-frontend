@@ -1,4 +1,4 @@
-import { TrashIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { TrashIcon, XMarkIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import { useState } from "react"
 import { deleteEmployeeApi } from "../../api/employeeAPIs";
 import { iconStyle } from "../../styles/globals";
@@ -6,6 +6,7 @@ import Button from "../buttons/Button";
 import Modal from "../Modal";
 
 export default function EmployeeListItem({ data, removeFromEmployeeList }) {
+    console.log(data)
     const [expanded, setExpanded] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
 
@@ -34,18 +35,34 @@ export default function EmployeeListItem({ data, removeFromEmployeeList }) {
         }
     }
 
-    const { key, name, email, position, account, payroll, curr, date, secLeft } = data
+    const { key, name, email, position, wallet, payroll, date, work_start } = data
+    const currency = data.edges.employee_from_currency.ticker.substring(0, data.edges.employee_from_currency.ticker.length - 4)
+    const empType = data.edges.employee_from_employ_type.is_permanent
+
+    let payFrequency
+    switch (data.edges.employee_from_employ_type.pay_freq) {
+        case "W":
+            payFrequency = "weekly"
+            break
+        case "D":
+            payFrequency = "daily"
+            break
+    }
+    const start = work_start.substring(4, 6) + '/' + work_start.substring(6) + '/' + work_start.substring(0, 4)
+
+    const handleClick = (address) => {
+        window.open("https://etherscan.io/address/" + address)
+    };
 
     return (<>
         <div
-            className="w-full grid grid-cols-6 gap-6 rounded-lg items-center bg-white p-4 my-2 shadow"
+            className="w-full grid grid-cols-5 gap-6 rounded-lg items-center bg-white p-4 my-2 shadow"
             onClick={() => { setExpanded(prevState => !prevState) }}
         >
             <div>{name ?? "--"}</div>
             <div>{position ?? "--"}</div>
             <div>{email ?? "--"}</div>
-            <div>{payroll ?? "--"}</div>
-            <div>{curr ?? "--"}</div>
+            <div>{payroll ?? "--"} {currency ?? "--"}</div>
             <div>{date ?? "--"}</div>
         </div>
 
@@ -66,23 +83,41 @@ export default function EmployeeListItem({ data, removeFromEmployeeList }) {
                     </div>
 
                     <div>
+                        <div className="font-semibold">Type</div>
+                        <div>{empType ?? "--"}</div>
+                    </div>
+
+                    <div>
                         <div className="font-semibold">Email</div>
                         <div>{email ?? "--"}</div>
                     </div>
 
                     <div className="col-span-2">
-                        <div className="font-semibold">Address</div>
-                        <div>{account ?? "--"}</div>
+                        <div className="font-semibold">Wallet Address</div>
+
+                        {wallet ?
+                            <div className="flex space-x-2">
+                                <span>{wallet}</span>
+                                <ArrowTopRightOnSquareIcon
+                                    className={iconStyle + " cursor-pointer"}
+                                    onClick={() => { handleClick(wallet) }}
+                                />
+
+                            </div>
+                            :
+                            "--"
+                        }
+
                     </div>
 
                     <div>
-                        <div className="font-semibold">Payroll Amount</div>
-                        <div>{payroll ?? "--"}</div>
+                        <div className="font-semibold">Payment Amount</div>
+                        <div>{payroll ?? "--"} {currency ?? "--"}</div>
                     </div>
 
                     <div>
-                        <div className="font-semibold">Currency</div>
-                        <div>{curr ?? "--"}</div>
+                        <div className="font-semibold">Pay Frequency</div>
+                        <div>{payFrequency ?? "--"}</div>
                     </div>
 
                     <div>
@@ -91,8 +126,8 @@ export default function EmployeeListItem({ data, removeFromEmployeeList }) {
                     </div>
 
                     <div>
-                        <div className="font-semibold">Time Left</div>
-                        <div>{secLeft ?? "--"}</div>
+                        <div className="font-semibold">Started on</div>
+                        <div>{start ?? "--"}</div>
                     </div>
 
                 </div>

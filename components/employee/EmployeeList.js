@@ -75,12 +75,11 @@ export default function EmployeeList(props) {
             </div>
 
             <div className="w-full grow flex flex-col overflow-hidden">
-                <div className="w-full grid grid-cols-6 gap-6 font-bold p-2 select-none">
+                <div className="w-full grid grid-cols-5 gap-6 font-bold p-2 select-none">
                     <div>name</div>
                     <div>role</div>
                     <div>email</div>
                     <div>payment amount</div>
-                    <div>currency</div>
                     <div>scheduled</div>
                 </div>
                 <div className="flex-auto h-0 overflow-auto overscroll-none">

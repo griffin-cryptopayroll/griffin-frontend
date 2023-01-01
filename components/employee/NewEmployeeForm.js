@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Button from "../buttons/Button";
 import { iconStyle } from "../../styles/globals";
@@ -16,18 +16,7 @@ const EMPLOYMENT_TYPES = [
 ]
 
 export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
-    const [newEmployee, setNewEmployee] = useState({
-        name: "",
-        position: "",
-        wallet: "",
-        payroll: 0,
-        currency: "USDC",
-        email: "",
-        start: 0,
-        end: 0,
-        pay_freq: "",
-        employ_type: ""
-    });
+    const [empType, setEmpType] = useState()
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -43,16 +32,16 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
             employer_gid: "2cb6b685-47b0-4299-bf6a-cb9bd8248f0d", // TO DO: get employer GID
             employ_type: event.target.employmentType.value,
             start: event.target.startDate.value.split("-").join(""),
-            end: event.target.endDate.value.split("-").join("")
+            end: event.target.endDate?.value.split("-").join("")
         }
 
-        postEmployeeApi(1, newEmployee) // TO DO: get employer ID
-         .then(response => {
-            addEmployee(newEmployee);
-            hideNewEmployeeForm();
-         }).catch(error => {
-            alert(error);
-         })
+        postEmployeeApi(newEmployee)
+            .then(response => {
+                addEmployee(newEmployee);
+                hideNewEmployeeForm();
+            }).catch(error => {
+                alert(error);
+            })
     };
 
     return (
@@ -65,104 +54,131 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
                 />
             </div>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name</label>
-                <input  
-                    id="name" 
+                <label htmlFor="name" className="font-light">Name</label>
+                <input
+                    id="name"
                     name="name"
-                    className="w-full p-2 rounded bg-stone-100"
+                    className="w-full p-2 rounded bg-stone-100 mb-3"
                     type="text"
                     pattern="[a-zA-Z .,'-]+"
                     title="Please enter a valid name."
                     required
-                    placeholder="John Doe"/>
-                
-                <label htmlFor="position">Position</label>
-                <input  
-                    id="position" 
-                    name="position"
-                    className="w-full p-2 rounded bg-stone-100"
-                    type="text"
-                    placeholder="CEO"/>
+                    placeholder="" />
 
-                <label htmlFor="wallet">Wallet</label>
-                <input 
-                    id="wallet" 
+                <label htmlFor="position" className="font-light">Position</label>
+                <input
+                    id="position"
+                    name="position"
+                    className="w-full p-2 rounded bg-stone-100 mb-3"
+                    type="text"
+                    placeholder="" />
+
+                <label htmlFor="wallet" className="font-light">Wallet</label>
+                <input
+                    id="wallet"
                     name="wallet"
-                    className="w-full p-2 rounded bg-stone-100"
+                    className="w-full p-2 rounded bg-stone-100 mb-3"
                     type="text"
                     pattern="0x[a-fA-F0-9]{40}"
-                    title="The wallet address must be a 42-characters hexadecimal number."
+                    title="The wallet address should be 42 characters long starting with 0x."
                     required
-                    placeholder="0x..."/>
+                    placeholder="0x..." />
 
-                <label htmlFor="payroll">Payroll</label>
-                <input 
-                    id="payroll"
-                    name="payroll"
-                    className="w-full p-2 rounded bg-stone-100"
-                    type="number"
-                    min="0"
-                    required
-                    placeholder="0"/>
-
-                <label htmlFor="currency">Currency</label>
-                <select 
-                    id="currency" 
-                    name="currency"
-                    className="w-full p-2 rounded bg-stone-100"
-                    required>
-                    {SUPPORTED_CURRENCIES.map((currency, i) => (
-                        <option key={i} value={currency + "USDT"}>{currency}</option>
-                    ))}
-                </select>
-
-                <label htmlFor="payFrequency">Frequency</label>
-                <select 
-                    id="payFrequency" 
-                    name="payFrequency"
-                    className="w-full p-2 rounded bg-stone-100"
-                    required>
-                    <option value="D">Daily</option>
-                    <option value="W">Weekly</option>
-                </select>
-
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email" className="font-light">Email</label>
                 <input
                     id="email"
                     name="email"
-                    className="w-full p-2 rounded bg-stone-100"
+                    className="w-full p-2 rounded bg-stone-100 mb-3"
                     type="email"
                     required
-                    placeholder="example@domain.com"/>
+                    placeholder="example@domain.com" />
 
-                <label htmlFor="employmentType">Employment Type</label>
-                <select 
-                    id="employmentType" 
+                <div className="grid grid-cols-4 gap-4">
+                    <div className="col-span-3">
+                        <label htmlFor="payroll" className="font-light">Payment Amount</label>
+                        <input
+                            id="payroll"
+                            name="payroll"
+                            className="w-full p-2 rounded bg-stone-100 mb-3"
+                            type="number"
+                            min="0"
+                            step="any"
+                            required
+                            placeholder="100" />
+                    </div>
+                    <div className="col-span-1 w-full h-full">
+                        <label htmlFor="currency" className="font-light">Currency</label>
+                        <select
+                            id="currency"
+                            name="currency"
+                            className="w-full p-2 pb-3 rounded bg-stone-100 mb-3"
+                            required>
+                            {SUPPORTED_CURRENCIES.map((currency, i) => (
+                                <option key={i} value={currency + "USDT"}>{currency}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+
+                <label htmlFor="payFrequency" className="font-light">Frequency</label>
+                <select
+                    id="payFrequency"
+                    name="payFrequency"
+                    className="w-full p-2 rounded bg-stone-100 mb-3"
+                    required>
+                    <option value="W">Weekly</option>
+                    <option value="D">Daily</option>
+                </select>
+
+                <label htmlFor="employmentType" className="font-light">Employment Type</label>
+                <select
+                    id="employmentType"
                     name="currenemploymentTypecy"
-                    className="w-full p-2 rounded bg-stone-100"
+                    className="w-full p-2 rounded bg-stone-100 mb-3"
+                    onChange={(e) => {
+                        setEmpType(e.target.value)
+                        // console.log(e.target.key)
+                    }}
                     required>
                     {EMPLOYMENT_TYPES.map((type, i) => (
                         <option key={i} value={type}>{type[0].toUpperCase() + type.substring(1)}</option>
                     ))}
                 </select>
 
-                <label htmlFor="startDate">Start Date</label>
-                <input
-                    id="startDate"
-                    name="startDate"
-                    className="w-full p-2 rounded bg-stone-100"
-                    type="date"
-                    required />
-                
-                <label htmlFor="endDate">End Date</label>
-                <input
-                    id="endDate"
-                    name="endDate"
-                    className="w-full p-2 rounded bg-stone-100"
-                    type="date"
-                    required />
+                <div className="flex space-x-3 mb-5">
+                    <div className="w-full">
+                        <label htmlFor="startDate" className="font-light">Start Date</label>
+                        <input
+                            id="startDate"
+                            name="startDate"
+                            className="w-full p-2 rounded bg-stone-100 mb-3"
+                            type="date"
+                            required />
+                    </div>
+                    {empType === 'freelance' ?
+                        <div className="w-full">
+                            <label htmlFor="endDate" className="font-light">End Date</label>
+                            <input
+                                id="endDate"
+                                name="endDate"
+                                className="w-full p-2 rounded bg-stone-100 mb-3"
+                                type="date"
+                                required />
+                        </div>
+                        :
+                        <></>
+                    }
 
-                <button type="submit">Add</button>
+                </div>
+
+                <div className="w-full flex justify-end">
+                    <Button
+                        type="submit"
+                        size="sm"
+                        className="self-end">
+                        Add
+                    </Button>
+                </div>
             </form>
         </div>
     );
