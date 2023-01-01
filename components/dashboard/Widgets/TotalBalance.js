@@ -1,8 +1,9 @@
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js'
 Chart.register(ArcElement, Tooltip);
 import { Doughnut } from 'react-chartjs-2';
+import { useAccount, useBalance } from 'wagmi';
 
-const data = {
+const chartData = {
     labels: [
         'Projected',
         'Remaining',
@@ -21,12 +22,14 @@ const data = {
 };
 
 export default function TotalBalance() {
-    const amount = 100000
+    const { address } = useAccount()
+    const { data, isError, isLoading } = useBalance({ address: address })
 
     return (
-        <div className="font-semibold text-2xl text-slate-800 ">
-            ${amount.toLocaleString()}
-            <Doughnut data={data} width={10} height={10} />
+        <div className="w-1/2 font-semibold text-2xl text-slate-800 text-center">
+            {data?.formatted.split()} {data?.symbol}
+            <Doughnut data={chartData} width={5} height={5} />
         </div>
+
     )
 }

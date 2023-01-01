@@ -29,14 +29,14 @@ export default function UpcomingPayments() {
     return (
         <>
             {/* <div className="w-full grow flex flex-col overflow-hidden"> */}
-            <div className="w-full grid grid-cols-4 gap-1 p-2 select-none even:bg-stone-100">
-                {entries.map(entry => (
-                    <>
+            <div className="w-full h-full">
+                {entries.map((entry, i) => (
+                    <div key={i} className="grid grid-cols-4 gap-1 p-2 select-none even:bg-stone-100">
                         <div>{entry.name}</div>
                         <div>{entry.role}</div>
                         <div>{entry.amount} {entry.currency}</div>
                         <div>{entry.date}</div>
-                    </>
+                    </div>
                 ))}
             </div>
             {/* </div> */}

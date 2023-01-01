@@ -17,7 +17,7 @@ export default function EmployeeList(props) {
     useEffect(() => {
         // TODO fetch employee data
         setLoading(true)
-        getAllEmployeesApi("6697a96b-2325-4351-ac7f-279956612dc6")
+        getAllEmployeesApi("2cb6b685-47b0-4299-bf6a-cb9bd8248f0d")
             .then(({ data }) => {
                 setEmpData(data)
                 setLoading(false)
@@ -89,7 +89,7 @@ export default function EmployeeList(props) {
                             .filter(({ name }) => name.toLowerCase().includes(searchToken.toLowerCase()))
                             .map((employee, i) => ( // TODO once connected to backend, remove i
                                 <EmployeeListItem
-                                    key={employee.key + i}
+                                    key={i}
                                     data={employee}
                                     removeFromEmployeeList={deleteEmployee}
                                 />
