@@ -6,7 +6,7 @@ import { authState } from '../states'
 import { useWeb3Modal } from '@web3modal/react'
 
 
-export default function Auth() {
+export default function SIWE() {
     const router = useRouter()
     const setAuth = useSetRecoilState(authState)
     const [username, setUsername] = useState('')

@@ -5,6 +5,11 @@ import Button from "../buttons/Button";
 import ConfirmPayment from "./ConfirmPayment";
 import Modal from "../Modal";
 import Checkbox from "../Checkbox";
+import { getSingleEmployeeApi, getPaymentApi } from "../../api/employeeAPIs";
+
+// TO DO: get employer ID
+const employeeId = "08e42c43-9ea2-4ba3-aab3-93d8f5d66d94";
+const employerId = "2cb6b685-47b0-4299-bf6a-cb9bd8248f0d";
 
 export default function PayrollList(props) {
     const [payrolls, setPayrolls] = useState([]);
@@ -12,6 +17,14 @@ export default function PayrollList(props) {
     const [selected, setSelected] = useState([]);
     const [paying, setPaying] = useState(false);
     const [allChecked, setAllChecked] = useState(false);
+    const [employee, setEmployee] = useState({
+        id: -1,
+        name: "",
+        role: "",
+        currency: "",
+        payday: "",
+        payroll: 0
+    });
 
     const selectPayroll = (payroll) => {
         setSelected(payrolls => [...payrolls, payroll]);
@@ -33,10 +46,19 @@ export default function PayrollList(props) {
     };
 
     useEffect(() => {
-        // TODO fetch payroll data
         setPayrolls(dummyPayrolls);
         setLoading(false);
-        // TODO transform data
+        /*
+        setLoading(true);
+        getPaymentApi(employeeId, employerId)
+            .then(({ data }) => {
+                setPayrolls(data.scheduled);
+            });
+        getSingleEmployeeApi(employeeId, employerId)
+            .then(({ data }) => {
+                setEmployee(data)
+            });
+        */
     }, []);
 
     return (
