@@ -67,7 +67,7 @@ export default function ConfirmPayment({payrolls, cancelPayment}) {
 			</table>
 			<div className="flex justify-between">
 				<Button label="Confirm" onClickHandler={()=>{}} />
-				<Button className="bg-white" label="Cancel" onClickHandler={() => cancelPayment()} />
+				<Button label="Cancel" onClickHandler={() => cancelPayment()} inverted />
 			</div>
 		</div>
 	);

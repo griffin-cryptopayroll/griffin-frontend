@@ -8,6 +8,8 @@ const API_URLS = {
   GET_EMPLOYER: "/employer",
   GET_VERSION: "/version",
   GET_PAYMENT: "/payment/employee",
+  GET_FUTURE_PAYMENT: "/payment/future",
+  GET_PAST_PAYMENT: "/payment/past",
   GET_MAINNET: "/projects/mainnets",
   GET_CATEGORY: "/projects/categories",
   GET_PROJECT_ONE: "/projects/",
