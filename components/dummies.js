@@ -22,3 +22,22 @@ export const dummyEmpData = [
         secLeft: 1088987
     },
 ]
+
+export const dummyPayrolls = [
+    {
+        id: 1,
+        name: "Lindsey Stroud",
+        role: "Marketing",
+        currency: "USDC",
+        payday: "1/1",
+        payroll: 10000 
+    },
+    {
+        id: 2,
+        name: "Nicci Troiani",
+        role: "Infra Engineer",
+        currency: "ETH",
+        payday: "1/2",
+        payroll: 5
+    }
+]
