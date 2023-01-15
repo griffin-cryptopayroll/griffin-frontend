@@ -1,32 +1,44 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import AuthClient, { generateNonce } from "@walletconnect/auth-client"
 import Button from '../components/buttons/Button'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import { authState } from '../states'
 import { useWeb3Modal } from '@web3modal/react'
 
+const authClient = await AuthClient.init({
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+    metadata: {
+        name: "griffin-client",
+        description: "authentication client for Griffin",
+        url: process.env.NEXT_PUBLIC_API_URL,
+    }
+})
+
+authClient.on("auth_response", (({ params }) => {
+    if (Boolean(params.result?.s)) {
+        console.log("authenticated")
+
+        // store token
+    }
+    else {
+        // error
+    }
+}))
+
+const { uri } = await authClient.request({
+    aud: "http://localhost:3000/siwe",
+    domian: "",
+    chainId: "eip155:1",
+    nonce: generateNonce()
+})
 
 export default function SIWE() {
-    const router = useRouter()
-    const setAuth = useSetRecoilState(authState)
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const { open, close, isOpen } = useWeb3Modal()
 
 
 
 
     const handleLogin = () => {
-        if (!username) {
-            alert('gotta have that username')
-        }
-        else if (!password) {
-            alert('no password')
-        }
-        else {
-            // TODO authenticate on server
-
-
-        }
+        open({ uri: uri })
     }
 
     return (
@@ -35,27 +47,11 @@ export default function SIWE() {
                 <div className='flex justify-center'>
                     <div className="text-3xl font-semibold select-none mb-8">G R I F F I N</div>
                 </div>
-                <div className="mb-5">
-                    <input
-                        type="text"
-                        placeholder="username"
-                        className="w-96 p-2 rounded bg-stone-100"
-                        value={username}
-                        onChange={({ target }) => { setUsername(target.value) }}
-                    />
-                </div>
-                <div className="mb-5">
-                    <input
-                        type="password"
-                        placeholder="password"
-                        className="w-96 p-2 rounded bg-stone-100"
-                        value={password}
-                        onChange={({ target }) => { setPassword(target.value) }}
-                    />
-                </div>
+
                 <div className='flex justify-center'>
                     <Button
-                        label="Login"
+                        size="lg"
+                        label="Sign-In with Ethereum"
                         onClickHandler={handleLogin}
                     />
                 </div>

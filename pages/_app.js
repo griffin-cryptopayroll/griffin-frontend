@@ -15,7 +15,7 @@ const chains = [chain.mainnet]
 const { provider } = configureChains(chains, [walletConnectProvider({ projectId })])
 const wagmiClient = createClient({
   autoConnect: true,
-  connectors: modalConnectors({ appName: 'web3Modal', chains }),
+  connectors: modalConnectors({ appName: 'web3Modal', chains, }),
   provider
 })
 
