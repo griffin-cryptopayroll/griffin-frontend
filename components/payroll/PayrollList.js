@@ -5,55 +5,97 @@ import Button from "../buttons/Button";
 import ConfirmPayment from "./ConfirmPayment";
 import Modal from "../Modal";
 import Checkbox from "../Checkbox";
+import { getUpcomingPayrollsApi, getPastPayrollsApi } from "../../api/payrollAPIs";
+
+// TO DO: get employer ID
+const employeeId = "08e42c43-9ea2-4ba3-aab3-93d8f5d66d94";
+const employerId = "2cb6b685-47b0-4299-bf6a-cb9bd8248f0d";
+const interval = "1m";
 
 export default function PayrollList(props) {
     const [payrolls, setPayrolls] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [selected, setSelected] = useState([]);
+    const [selectedPayrolls, setSelectedPayrolls] = useState([]);
     const [paying, setPaying] = useState(false);
     const [allChecked, setAllChecked] = useState(false);
+    const [upcomingSelected, setUpcomingSelected] = useState(true);
+    const [pastSelected, setPastSelected] = useState(false);
 
     const selectPayroll = (payroll) => {
-        setSelected(payrolls => [...payrolls, payroll]);
+        setSelectedPayrolls(payrolls => [...payrolls, payroll]);
     };
 
     const unselectPayroll = (targetId) => {
-        setSelected(payrolls => payrolls.filter(({ id }) => id != targetId));
+        setSelectedPayrolls(payrolls => payrolls.filter(({ id }) => id != targetId));
     };
 
     const cancelPayment = () => setPaying(false);
 
     const checkAll = () => {
         if (!allChecked) {
-            setSelected(payrolls);
+            setSelectedPayrolls(payrolls);
         } else {
-            setSelected([]);
+            setSelectedPayrolls([]);
         }
         setAllChecked(!allChecked);
     };
 
+    const onFilterPayrolls = () => {
+        if (!upcomingSelected) {
+            getUpcomingPayrollsApi(employerId, interval)
+                .then(({ data }) => {
+                    setPayrolls(data.future);
+                });
+        } else if (!pastSelected) {
+            getPastPayrollsApi(employerId, interval)
+                .then(({ data }) => {
+                    setPayrolls(data.past);
+                });
+        }
+        setUpcomingSelected(!upcomingSelected);
+        setPastSelected(!pastSelected);
+    };
+
     useEffect(() => {
-        // TODO fetch payroll data
-        setPayrolls(dummyPayrolls);
-        setLoading(false);
-        // TODO transform data
+        setLoading(true);
+        getUpcomingPayrollsApi(employerId, interval)
+            .then(({ data }) => {
+                setLoading(false);
+                setPayrolls(data.future);
+            });
     }, []);
 
     return (
         <>
-            <div className="mb-3 text-3xl font-semibold select-none">Payrolls</div>
-            {paying && <Modal>
-                <ConfirmPayment payrolls={selected} cancelPayment={cancelPayment} />
-            </Modal>}
-            <div className="mb-3 flex justify-end space-x-2 items-center">
-                <Button
-                    className="disabled"
-                    label="Pay Multiple Employees"
-                    size="sm"
-                    onClickHandler={() => setPaying(true)}
-                    disabled={selected.length ? false : true}
-                />
+            <div className="flex justify-between">
+                <div className="mb-3 space-x-4 items-center">
+                    <span className="text-3xl font-semibold select-none">Payrolls</span>
+                    <Button
+                        label="Upcoming"
+                        size="sm"
+                        onClickHandler={onFilterPayrolls}
+                        inverted={!upcomingSelected}
+                    />
+                    <Button
+                        label="Past"
+                        size="sm"
+                        onClickHandler={onFilterPayrolls}
+                        inverted={!pastSelected}
+                    />
+                </div>
+                <div className="mb-3 space-x-2 items-center">
+                    <Button
+                        className="disabled"
+                        label="Pay Multiple Employees"
+                        size="sm"
+                        onClickHandler={() => setPaying(true)}
+                        disabled={selectedPayrolls.length ? false : true}
+                    />
+                </div>
             </div>
+            {paying && <Modal>
+                <ConfirmPayment payrolls={selectedPayrolls} cancelPayment={cancelPayment} />
+            </Modal>}
             <div className="w-full grow flex flex-col overflow-hidden">
                 <div className="w-full grid grid-cols-10 font-bold p-2 select-none">
                     <Checkbox value={allChecked} onChange={checkAll} />
