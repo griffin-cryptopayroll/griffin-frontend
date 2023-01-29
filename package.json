@@ -10,17 +10,18 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.11",
-    "@walletconnect/auth-client": "^2.0.0",
     "@web3modal/ethereum": "^2.0.0-beta.5",
     "@web3modal/react": "^2.0.0-beta.5",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
     "ethers": "^5.7.2",
+    "iron-session": "^6.3.1",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "18.2.0",
     "recoil": "^0.7.5",
+    "siwe": "^1.1.6",
     "wagmi": "^0.8.5"
   },
   "devDependencies": {

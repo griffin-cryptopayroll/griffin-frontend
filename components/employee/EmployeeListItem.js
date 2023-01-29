@@ -36,7 +36,7 @@ export default function EmployeeListItem({ data, removeFromEmployeeList }) {
     }
 
     const { key, name, email, position, wallet, payroll, date, work_start } = data
-    const currency = data.edges.employee_from_currency.ticker.substring(0, data.edges.employee_from_currency.ticker.length - 4)
+    const currency = data.edges.employee_from_currency.ticker
     const empType = data.edges.employee_from_employ_type.is_permanent
 
     let payFrequency
@@ -93,7 +93,7 @@ export default function EmployeeListItem({ data, removeFromEmployeeList }) {
                     </div>
 
                     <div className="col-span-2">
-                        <div className="font-semibold">Wallet Address</div>
+                        <div className="font-semibold">L1 Wallet Address</div>
 
                         {wallet ?
                             <div className="flex space-x-2">
