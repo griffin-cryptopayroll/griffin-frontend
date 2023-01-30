@@ -1,5 +1,6 @@
 import { API_URLS } from "../constants";
 import { axiosInstance } from "./common";
+import { withIronSessionApiRoute } from "iron-session/next";
 
 const { GET_EMPLOYER, LOGIN, PING } = API_URLS;
 

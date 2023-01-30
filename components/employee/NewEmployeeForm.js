@@ -114,6 +114,7 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
                             className="w-full p-2 pb-3 rounded bg-stone-100 mb-3"
                             required>
                             {SUPPORTED_CURRENCIES.map((currency, i) => (
+                                // eslint-disable-next-line react/no-unknown-property
                                 <option key={i} value={currency + "USDT"}>{currency}</option>
                             ))}
                         </select>
@@ -141,6 +142,7 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
                     }}
                     required>
                     {EMPLOYMENT_TYPES.map((type, i) => (
+                        // eslint-disable-next-line react/no-unknown-property
                         <option key={i} value={type}>{type[0].toUpperCase() + type.substring(1)}</option>
                     ))}
                 </select>
