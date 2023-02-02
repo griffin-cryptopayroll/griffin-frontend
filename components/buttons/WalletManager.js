@@ -5,6 +5,8 @@ import { useWeb3Modal } from '@web3modal/react'
 import Modal from "../Modal";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { shortenWalletAddress } from "../../pages/api/util";
+
 
 export default function WalletManager() {
     const { address, isConnected, isConnecting } = useAccount()
@@ -16,7 +18,7 @@ export default function WalletManager() {
         {walletModal &&
             <Modal>
                 <div className="flex justify-between">
-                    <div className="text-2xl font-semibold">{address.substring(0, 5)}...{address.substring(38)}</div>
+                    <div className="text-2xl font-semibold">{shortenWalletAddress(address, 'short')}</div>
                     <XMarkIcon
                         className="h-6 w-auto mr-2 cursor-pointer"
                         onClick={() => { setWalletModal(false) }}
@@ -39,7 +41,7 @@ export default function WalletManager() {
                     Withdraw
                 </Button>
                 <Button onClickHandler={() => { setWalletModal(true) }}>
-                    {address.substring(0, 7) + "..."}
+                    {shortenWalletAddress(address, 'slim')}
                 </Button>
             </div>
             :

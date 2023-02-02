@@ -1,13 +1,21 @@
 
 const sizes = {
-    sm: "px-2 py-1 text-md font-light text-white tracking-wider rounded-lg bg-violet-500 cursor-pointer hover:bg-violet-400 transition-all select-none disabled:opacity-75",
-    md: "px-3 py-2 text-md font-light text-white tracking-wider rounded-lg bg-violet-500 cursor-pointer hover:bg-violet-400 transition-all select-none disabled:opacity-75",
-    lg: "p-4 text-xl font-light tracking-wider text-white rounded-lg bg-violet-500 cursor-pointer hover:bg-violet-400 transition-all select-none disabled:opacity-75"
+    sm: "px-2 py-1 text-md ",
+    md: "px-3 py-2 text-md ",
+    lg: "p-4 text-xl "
 }
-export default function Button({ className, label, size, onClickHandler, disabled, altText, children }) {
+
+const colors = {
+    solidPurple: 'text-white bg-violet-500 hover:bg-violet-400 ',
+    outlinePurple: 'text-violet border-1 border-violet-400 hover:bg-violet-100 hover:text-white',
+}
+const base = 'font-light tracking-wider rounded-lg cursor-pointer transition-all select-none disabled:opacity-75'
+
+
+export default function Button({ label, size, color, onClickHandler, disabled, altText, children }) {
 
     return <button
-        className={className + " " + (size ? sizes[size] : sizes.md)}
+        className={(size ? sizes[size] : sizes.md) + (color ? colors[color] : colors.solidPurple) + base}
         onClick={onClickHandler}
         aria-label={altText ?? label}
         disabled={disabled}
