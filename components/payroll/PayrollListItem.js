@@ -5,7 +5,12 @@ import ConfirmPayment from "./ConfirmPayment";
 import Checkbox from "../Checkbox";
 
 export default function PayrollListItem({ data, selectPayroll, unselectPayroll, allChecked }) {
-	const { id, name, role, currency, payday, payroll } = data;
+	const id = data["id"];
+	const name = data["edges"]["payment_from_employee"]["name"];
+	const role = "Software Engineer";
+	const payroll = data["edges"]["payment_from_employee"]["payroll"];
+	const currency = data["edges"]["payment_from_currency"]["ticker"];
+	const payday = data["edges"]["payment_from_currency"]["payday"];
 
 	const [paying, setPaying] = useState(false);
 	const [checked, setChecked] = useState(false);
