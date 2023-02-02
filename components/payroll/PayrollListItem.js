@@ -34,7 +34,7 @@ export default function PayrollListItem({ data, selectPayroll, unselectPayroll, 
 			{paying && <Modal>
 				<ConfirmPayment payrolls={[data]} cancelPayment={cancelPayment} />
 			</Modal>}
-			<div className="w-full grid grid-cols-10 gap-2 rounded-lg items-center bg-white p-4 my-2 shadow">
+			<div className="w-full grid grid-cols-9 gap-2 rounded-lg items-center bg-white p-4 my-2 shadow">
 				<Checkbox value={checked} onChange={check} />
 				<div className="col-span-2">{name ?? "--"}</div>
 				<div className="col-span-2">{role ?? "--"}</div>
@@ -42,7 +42,7 @@ export default function PayrollListItem({ data, selectPayroll, unselectPayroll, 
 				<div>{currency ?? "--"}</div>
 				<div>{payday ?? "--"}</div>
 				<Button
-					className="col-span-2"
+					// className="col-span-2"
 					label="Pay Now"
 					size="sm"
 					onClickHandler={() => setPaying(true)}

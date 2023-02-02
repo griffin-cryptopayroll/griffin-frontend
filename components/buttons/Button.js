@@ -7,7 +7,7 @@ const sizes = {
 
 const colors = {
     solidPurple: 'text-white bg-violet-500 hover:bg-violet-400 ',
-    outlinePurple: 'text-violet border-1 border-violet-400 hover:bg-violet-100 hover:text-white',
+    outlinePurple: 'text-violet border-2 border-violet-400 hover:bg-violet-100 hover:text-white',
 }
 const base = 'font-light tracking-wider rounded-lg cursor-pointer transition-all select-none disabled:opacity-75'
 

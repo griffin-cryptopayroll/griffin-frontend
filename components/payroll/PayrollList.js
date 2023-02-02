@@ -68,26 +68,28 @@ export default function PayrollList(props) {
     return (
         <>
             <div className="flex justify-between">
-                <div className="mb-3 space-x-4 items-center">
-                    <span className="text-3xl font-semibold select-none">Payrolls</span>
+                <div className="flex mb-5 space-x-4 items-center">
+                    <div className="mr-8 text-3xl font-semibold select-none">Payroll</div>
                     <Button
                         label="Upcoming"
                         size="sm"
                         onClickHandler={onFilterPayrolls}
                         inverted={!upcomingSelected}
+                        color={upcomingSelected ? 'solidPurple' : 'outlinePurle'}
                     />
                     <Button
                         label="Past"
                         size="sm"
                         onClickHandler={onFilterPayrolls}
                         inverted={!pastSelected}
+                        color={pastSelected ? 'solidPurple' : 'outlinePurle'}
                     />
                 </div>
-                <div className="mb-3 space-x-2 items-center">
+                <div className="mb-3 ">
                     <Button
                         className="disabled"
-                        label="Pay Multiple Employees"
-                        size="sm"
+                        label="Pay Multiple"
+                        size="md"
                         onClickHandler={() => setPaying(true)}
                         disabled={selectedPayrolls.length ? false : true}
                     />
@@ -97,7 +99,7 @@ export default function PayrollList(props) {
                 <ConfirmPayment payrolls={selectedPayrolls} cancelPayment={cancelPayment} />
             </Modal>}
             <div className="w-full grow flex flex-col overflow-hidden">
-                <div className="w-full grid grid-cols-10 font-bold p-2 select-none">
+                <div className="w-full mx-2 grid grid-cols-9 font-bold p-2 select-none">
                     <Checkbox value={allChecked} onChange={checkAll} />
                     <div className="col-span-2">Name</div>
                     <div className="col-span-2">Role</div>

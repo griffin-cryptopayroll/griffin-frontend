@@ -6,9 +6,7 @@ import { useAccount, useBalance } from "wagmi";
 
 export default function Dash() {
     const { address } = useAccount()
-    const ethBalance = useBalance({ address: address })
-    const usdcBalance = useBalance({ address: address })
-    const maticBalance = useBalance({ address: address })
+
 
     return (
         <div className="h-full max-h-full grid grid-flow-row grid-cols-4 grid-rows-3 gap-6 dense">

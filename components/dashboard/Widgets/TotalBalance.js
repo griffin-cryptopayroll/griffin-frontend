@@ -26,10 +26,14 @@ export default function TotalBalance() {
     const { data, isError, isLoading } = useBalance({ address: address })
 
     return (
-        <div className="w-1/2 font-semibold text-2xl text-slate-800 text-center">
-            {data?.formatted.split()} {data?.symbol}
-            <Doughnut data={chartData} width={5} height={5} />
-        </div>
+        <div className='flex flex-col w-full items-center'>
+            <div className='font-semibold text-2xl text-slate-800'>
+                {parseFloat(data?.formatted).toPrecision(6) + ' ' + data?.symbol}
+            </div>
+            <div className="w-1/2">
 
+                <Doughnut data={chartData} width={5} height={5} />
+            </div>
+        </div>
     )
 }
