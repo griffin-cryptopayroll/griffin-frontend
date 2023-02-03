@@ -4,8 +4,6 @@ import { Doughnut } from 'react-chartjs-2';
 import { useBalance } from 'wagmi';
 import TOKENS from '../../../constants/ERC-20';
 
-
-
 const { USDC, MATIC } = TOKENS
 
 export default function BalanceComposition({ address }) {
@@ -25,9 +23,9 @@ export default function BalanceComposition({ address }) {
         datasets: [{
             label: 'Balance Compostition',
             data: [
-                ethBalance.data.formatted,
-                maticBalance.data.formatted,
-                usdcBalance.data.formatted],
+                ethBalance.data?.formatted,
+                maticBalance.data?.formatted,
+                usdcBalance.data?.formatted],
             backgroundColor: [
                 '#8992b1',
                 '#7950dd',
