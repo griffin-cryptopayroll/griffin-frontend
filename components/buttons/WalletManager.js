@@ -3,8 +3,7 @@ import Button from "./Button";
 import { useAccount, useDisconnect } from 'wagmi'
 import { useWeb3Modal } from '@web3modal/react'
 import Modal from "../Modal";
-import { ArrowPathIcon } from "@heroicons/react/24/solid";
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { XMarkIcon, ArrowPathIcon } from "@heroicons/react/24/solid";
 import { shortenWalletAddress } from "../../pages/api/util";
 
 

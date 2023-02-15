@@ -1,39 +1,31 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Button from '../components/buttons/Button'
+import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { useWeb3Modal } from '@web3modal/react'
 import { useAccount, useDisconnect, useNetwork, useSignMessage } from 'wagmi'
-import { SiweMessage, generateNonce } from 'siwe'
+import { SiweMessage } from 'siwe'
 import { shortenWalletAddress } from './api/util'
+import { getNonceApi, postVerifyApi } from '../api/authAPIs'
 
 export default function SIWE() {
     const { address, isConnected, isConnecting } = useAccount()
     const { disconnect } = useDisconnect()
     const { chain } = useNetwork()
-    console.log(chain)
     const { signMessageAsync } = useSignMessage()
 
     const { open, close, isOpen } = useWeb3Modal()
     const router = useRouter()
     const [phase, setPhase] = useState()
-    const [nonce, setNonce] = useState()
-
-    const fetchNonce = () => {
-        const n = generateNonce()
-        // DEBUG
-        // console.log(n)
-        // TODO replace hard-coded nonce with server generated nonce
-        setNonce(n)
-    }
-
-    useEffect(() => {
-        fetchNonce()
-    }, [])
 
     const onSignIn = useCallback(async () => {
+        if (phase === 'signin') return
+        setPhase('signin')
         try {
             const chainId = chain.id
             if (!address || !chainId) return
+
+            const { data: { nonce } } = await getNonceApi()
 
             const msg = new SiweMessage({
                 domain: window.location.host,
@@ -58,25 +50,31 @@ export default function SIWE() {
                 body: JSON.stringify({ msg, sig })
             })
 
-            // DEBUG
-            console.log(verifyRes)
+            if (!verifyRes) throw new Error('Error verifying message on-chain')
 
-            if (!verifyRes) throw new Error('Error verifying message')
+            // send msg and sig to backend
+            const serverRes = await postVerifyApi({
+                message: msg.toMessage(),
+                signature: sig
+            })
 
-            // TODO send msg and sig to backend
+            // TODO store JWT token
+            console.log('serverRes', serverRes)
 
-
-            // TODO if verfied by backend route to dashboard
+            // if verfied by backend route to dashboard
             router.push('/dashboard')
+
         }
         catch (err) {
             console.log(err)
-            setNonce('')
-            fetchNonce()
+        }
+        finally {
+            setPhase('wallet-connected')
         }
     }, [chain])
 
     const openModalForSignIn = () => {
+        setPhase('wallet-connected')
         open()
     }
 
@@ -106,11 +104,17 @@ export default function SIWE() {
                                     onClickHandler={disconnect}
                                 />
                             </div>
-                            <Button
-                                size="lg"
-                                label="Sign-In with Ethereum"
-                                onClickHandler={onSignIn}
-                            />
+                            {phase !== 'signin' ?
+                                <Button
+                                    size="lg"
+                                    label="Sign-In with Ethereum"
+                                    onClickHandler={onSignIn}
+                                />
+                                :
+                                <div className='pt-5 flex justify-center items-center'>
+                                    <ArrowPathIcon className="h-10 w-auto animate-spin mr-3" />
+                                    <span className='text-lg font-normal'>Confirming sign in message in my wallet</span>
+                                </div>}
                         </div>
                         :
                         <Button
