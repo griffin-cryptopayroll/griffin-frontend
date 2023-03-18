@@ -3,7 +3,6 @@ import SidePanel from "../../components/SidePanel"
 import PayrollList from "../../components/payroll/PayrollList"
 
 export default function Payroll() {
-
     return (
         <div className="wrapper flex flex-col h-screen overflow-hidden">
             <Navbar />

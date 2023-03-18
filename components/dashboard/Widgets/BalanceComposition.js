@@ -12,8 +12,6 @@ export default function BalanceComposition({ address }) {
     const usdcBalance = useBalance({ address: address, token: USDC })
     const maticBalance = useBalance({ address: address, token: MATIC })
 
-    console.log(maticBalance)
-
     const chartData = {
         labels: [
             'ETH',

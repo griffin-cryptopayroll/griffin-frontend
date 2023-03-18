@@ -1,12 +1,10 @@
 import axios from "axios";
 
-function withoutAuth() {
+function withAuth() {
   return axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
-    headers: {
-      Authorization: 'Bearer ' + "5325dc1-bd07-4367-8acd-ea82980fe5db",
-    }
+    withCredentials: true
   });
 }
 
-export const axiosInstance = withoutAuth();
+export const axiosInstance = withAuth();
