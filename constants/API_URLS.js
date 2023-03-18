@@ -8,14 +8,14 @@ const API_URLS = {
   GET_EMPLOYER: "/employer",
   GET_VERSION: "/version",
   GET_PAYMENT: "/api/v0/payment/employee",
-  GET_FUTURE_PAYMENT: "/payment/future",
-  GET_PAST_PAYMENT: "/payment/past",
+  GET_FUTURE_PAYMENT: "api/v1/payment/future",
+  GET_PAST_PAYMENT: "api/v1/payment/past",
   GET_MAINNET: "/projects/mainnets",
   GET_CATEGORY: "/projects/categories",
   GET_PROJECT_ONE: "/projects/",
   GET_SEARCH_PROJECTS: "/projects/search",
   NONCE: "/api/v1/login/nonce",
-  VERIFY: "/api/v1/login/verify/token",
+  VERIFY: "/api/v1/login/verify",
   PING: "/ping"
 };
 

@@ -58,13 +58,11 @@ export default function SIWE() {
                 signature: sig
             })
 
-            // TODO store JWT token
-            console.log('serverRes', serverRes)
-
+            console.log(serverRes)
+            
             // if verfied by backend, route to dashboard
             setPhase('signin-succeeded')
             router.push('/dashboard')
-
         }
         catch (err) {
             console.log(err)

@@ -4,7 +4,6 @@ import { walletConnectModalState } from '../states';
 
 import { EthereumClient, modalConnectors, walletConnectProvider } from '@web3modal/ethereum'
 import { chain, configureChains, createClient, WagmiConfig } from 'wagmi'
-
 import { Web3Modal } from '@web3modal/react'
 
 // 1. Get projectID 
@@ -26,17 +25,16 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <RecoilRoot>
-        <WagmiConfig client={wagmiClient}>
-          <Component {...pageProps} />
-        </WagmiConfig>
-      </RecoilRoot>
-
-      <Web3Modal
-        projectId={projectId}
-        ethereumClient={ethereumClient}
-      />
-    </>
+        <RecoilRoot>
+          <WagmiConfig client={wagmiClient}>
+            <Component {...pageProps} />
+          </WagmiConfig>
+        </RecoilRoot>
+        <Web3Modal
+          projectId={projectId}
+          ethereumClient={ethereumClient}
+        />
+        </>
   )
 }
 

@@ -29,7 +29,7 @@ export default function NewEmployeeForm({ addEmployee, hideNewEmployeeForm }) {
             currency: event.target.currency.value,
             pay_freq: event.target.payFrequency.value,
             email: event.target.email.value,
-            employer_gid: "2cb6b685-47b0-4299-bf6a-cb9bd8248f0d", // TO DO: get employer GID
+            employer_gid: "318c62e4-d598-45f6-8a64-e626e0de7424", // TO DO: get employer GID
             employ_type: event.target.employmentType.value,
             start: event.target.startDate.value.split("-").join(""),
             end: event.target.endDate?.value.split("-").join("")
