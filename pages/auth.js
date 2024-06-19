@@ -4,16 +4,13 @@ import Button from '../components/buttons/Button'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { authState } from '../states'
 import { useWeb3Modal } from '@web3modal/react'
-
+import { loginApi } from '../api/authAPIs'
 
 export default function Auth() {
     const router = useRouter()
     const setAuth = useSetRecoilState(authState)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-
-
-
 
     const handleLogin = () => {
         if (!username) {
@@ -24,8 +21,10 @@ export default function Auth() {
         }
         else {
             // TODO authenticate on server
-
-
+            loginApi(username, password)
+                .then(({ data }) => {
+                    
+                });
         }
     }
 
